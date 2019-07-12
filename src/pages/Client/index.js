@@ -81,7 +81,7 @@ class IndexPage extends Component {
                                 </div>
                                 <div>
                                     <div className="client_main_area_content_area">
-                                    {this.state.accountInfo && <AccountInfo table = {data.me.package} userID = {data.me.user_id}/>}
+                                    {this.state.accountInfo && <AccountInfo table = {data.me.package} userID = {data.me.form_id}/>}
                                     {this.state.leaveAMessage && <LeaveAMessageForm />}
                                     {this.state.leaveAComplain && <ComplainForm />}
                                     {this.state.changeCV && <ChangeCV />}

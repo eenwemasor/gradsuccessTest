@@ -36,7 +36,7 @@ class Message extends Component {
                 <div className="form_preview_inner">
 
                     <h3 className = "form-header" >Form Details </h3>
-                    <div className="form_preview_col_2">
+                    <div className="form_preview_col_1">
                         <div className="form_preview_fields">
                             <small>Name</small>
                             <p>{data.getGraduateSchoolEssayRedraftForm.name}</p>
@@ -110,7 +110,7 @@ class Message extends Component {
                         </div>
                     </div>
 
-                    <div className="form_preview_col_3">
+                    <div className="form_preview_col_1">
                         <div className="form_preview_fields"> 
                             <small>Skills</small>
                             <ul>                              
@@ -149,7 +149,7 @@ class Message extends Component {
                         </div>
                     </div>
 
-                    <div className="form_preview_col_3">
+                    <div className="form_preview_col_1">
                         <div className="form_preview_fields"> 
                             <small>Skills</small>
                             <ul>                              

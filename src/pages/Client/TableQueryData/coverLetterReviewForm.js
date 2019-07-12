@@ -43,16 +43,16 @@ render() {
                         <div className="form_preview_col_1">
                             <div className="form_preview_fields">
                                 <small>Name</small>
-                                <p>{data.getCoverLetterReviewForm.name}</p>
+                                <p>{data.getCoverLetterReview.name}</p>
                             </div>
                             <div className="form_preview_fields"> 
                                 <small>Industry and Role Title Applied for</small>
-                                <p>{data.getCoverLetterReviewForm.industry_applied_for}</p>
+                                <p>{data.getCoverLetterReview.industry_applied_for}</p>
                             </div>
 
                              <div className="form_preview_fields"> 
                                 <small>Summary of Interest</small>
-                                <p>{data.getCoverLetterReviewForm.summary_of_interest}</p>
+                                <p>{data.getCoverLetterReview.summary_of_interest}</p>
                             </div>
                         </div>
                         
