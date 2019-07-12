@@ -6,7 +6,7 @@ import CoverLetterRedraft from "./Forms/coverLetterRedraft"
 import CoverLetterReviewForm from "./Forms/coverLetterReviewForm"
 import GraduateSchoolEssayRedraftForm from "./Forms/graduateSchoolEssayRedraftForm"
 import GraduateSchoolStatementReviewForm from "./Forms/graduateSchoolStatementReviewForm"
-import ResumeReviewForm from "./Forms/ResumeReviewForm"
+import ResumeReviewForm from "./Forms/resumeReviewForm"
 
 
 
