@@ -1,40 +1,55 @@
 import { React, Component } from "react"
+import Modal from "react-modal"
 import Footer from '../components/Footer'
-import Account from './account'
 import { Query } from "react-apollo";
 import { LOGGED_IN_USER } from "../graphql/queries"
 import loader from "../../images/loader.gif"
 import MainLayout from "../components/ClientAccountComponents/mainLayout"
 import AccountInfo from "./account"
+import LoginForm from "../components/Forms/loginForm"
+import LogoutForm from "../components/Forms/logoutForm"
 
 
 import LeaveAMessageForm from "../components/Forms/leaveAMessageForm"
 import ComplainForm from "../components/Forms/complainForm"
 import ChangeCV from "../components/Forms/changeCV"
 
+
+const customStyles = {
+  content : {
+    top                   : '0%',
+    left                  : '0%',
+    width                 : '100%',
+    height                : '100%',
+    backgroundColor       : 'rgba(255,255,255,0.3)'
+  }
+};
+
 class IndexPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            loggedIn: null,
+            loggedIn: "",
             leaveAMessage:false,
             leaveAComplain:false,
             changeCV:false,
-            accountInfo:true
+            accountInfo:true,
+            showModal:false
 
         }
         this.handleDisplayComponent = this.handleDisplayComponent.bind(this);
+        this.logoutClient = this.logoutClient.bind(this);
     }
-    componentWillMount() {
-        if (this.state.loggedIn === "") {
-            window.location = '/'
-        }
-    }
-
     componentDidMount(){
         this.setState({
             loggedIn:localStorage.getItem('auth-token') || ""
         })
+
+        if (this.state.loggedIn === "") {
+           this.setState({ showModal: true });
+        }
+
+        
     }
 
     handleDisplayComponent(event){
@@ -50,6 +65,10 @@ class IndexPage extends Component {
        this.setState({
             [Component]:true
        })
+    }
+
+    logoutClient(){
+
     }
 
     render() {
@@ -76,8 +95,8 @@ class IndexPage extends Component {
                                     <button id = "leaveAMessage" onClick = {this.handleDisplayComponent}>Leave a Message</button>
                                     <button id = "leaveAComplain" onClick = {this.handleDisplayComponent}>Have a Complain ?</button>
                                     <button id = "changeCV" onClick = {this.handleDisplayComponent}> Change CV</button>
-                                    
                                     <button onClick = {this.handleDisplayComponent}>View Request Details</button>
+                                    <LogoutForm />
                                 </div>
                                 <div>
                                     <div className="client_main_area_content_area">
@@ -98,8 +117,15 @@ class IndexPage extends Component {
         } else {
             return (
                 <div>
-            
-        </div>
+                        <Modal 
+                           isOpen={this.state.showModal}
+                           contentLabel="Minimal Modal Example"
+                           style={customStyles}
+                           ariaHideApp={false}
+                        >
+                          <LoginForm />
+                        </Modal>
+                </div>
             )
         }
     }

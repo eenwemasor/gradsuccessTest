@@ -191,6 +191,9 @@ class Message extends Component {
                             <small>Referee</small>
                             <p>{data.getGraduateSchoolEssayRedraftForm.referee}</p>
                         </div>
+                        <div className = "spacing">
+                                
+                            </div>
                     </div>
 
                 </div>

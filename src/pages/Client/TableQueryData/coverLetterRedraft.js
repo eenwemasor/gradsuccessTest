@@ -220,6 +220,10 @@ render() {
                             <small>LSummary of your interest</small>
                             <p>{data.getCoverLetterRedraft.summary_of_interest}</p>
                         </div>
+
+                        <div className = "spacing">
+                                
+                            </div>
                     </div>
 
 

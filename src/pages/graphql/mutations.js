@@ -16,6 +16,15 @@ export const LOGIN = gql`
 	}
 `;
 
+export const LOGOUT = gql`
+   mutation{
+	  logout{
+	    message
+	  }
+	}
+`;
+
+
 export const FORGOT_PASSWORD = gql`
     mutation login(
     $email: String!,

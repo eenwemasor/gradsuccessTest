@@ -54,6 +54,10 @@ render() {
                                 <small>Summary of Interest</small>
                                 <p>{data.getCoverLetterReview.summary_of_interest}</p>
                             </div>
+
+                            <div className = "spacing">
+                                
+                            </div>
                         </div>
                         
                     </div>

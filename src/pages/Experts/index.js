@@ -10,6 +10,7 @@ import GraduateSchoolRedraftForm from "./TableQueryData/graduateSchoolEssayRedra
 import GraduateSchoolReviewForm from "./TableQueryData/graduateSchoolStatementReviewForm"
 import CoverLetterReviewForm from "./TableQueryData/coverLetterReviewForm"
 import CoverLetterRedraftForm from "./TableQueryData/coverLetterRedraft"
+import LogoutForm from "../components/Forms/logoutForm"
 
 import MainLayout from "../components/ClientAccountComponents/mainLayout"
 
@@ -61,7 +62,7 @@ class IndexPage extends Component {
                 <div>
                     <MainLayout />
                     <div className = "main-content">
-                        <div className = "main-content">
+
                             <div className = "client_main_area">
                                 <div className = "client_main_area_menu">
                                     <button id = "allRequest" onClick = {this.handleDisplayComponent}>All Request</button>
@@ -70,19 +71,20 @@ class IndexPage extends Component {
                                     <button id = "graduateSchoolReview" onClick = {this.handleDisplayComponent}>Graduate School Review</button>
                                     <button id = "coverLetterReview" onClick = {this.handleDisplayComponent}>Cover Letter Review</button>
                                     <button id = "coverLetterRedraft" onClick = {this.handleDisplayComponent}>Cover Letter Redraft</button>
+                                    <LogoutForm />
                                 </div>
                                 <div>
                                     <div className="client_main_area_content_area">
-                                    {this.state.resumeReview && <ResumeReviewForm />}
-                                    {this.state.graduateSchoolRedraft && <GraduateSchoolRedraftForm />}
-                                    {this.state.graduateSchoolReview && <GraduateSchoolReviewForm />}
-                                    {this.state.coverLetterReview && <CoverLetterReviewForm />}
-                                    {this.state.coverLetterRedraft && <CoverLetterRedraftForm />}
+                                        {this.state.resumeReview && <ResumeReviewForm />}
+                                        {this.state.graduateSchoolRedraft && <GraduateSchoolRedraftForm />}
+                                        {this.state.graduateSchoolReview && <GraduateSchoolReviewForm />}
+                                        {this.state.coverLetterReview && <CoverLetterReviewForm />}
+                                        {this.state.coverLetterRedraft && <CoverLetterRedraftForm />}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+               
                     <Footer />
                 </div>
             );

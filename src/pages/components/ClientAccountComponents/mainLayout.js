@@ -80,6 +80,7 @@ export default class mainLayout extends Component {
                 <li><Link to="Client/history">History</Link></li>
                 <li><Link to="Client/message">Messages</Link></li>
                 <li><Link to="Client/profile">Profile</Link></li>
+                
               </ul>
             </div>
 

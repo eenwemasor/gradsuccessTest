@@ -16,14 +16,12 @@ class GraduateSchoolEssayRedraftForm extends Component {
             form_id:props.userID || "empty"
         }
 }
-
-
 render() {
     return(  
         <div>
         <Query 
         query={GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM}
-        variables={{ form_id:this.state.form_id }}
+        variables={{form_id:this.state.form_id }}
         >
             {({ loading, error, data }) => {
               if (loading) return (
@@ -42,17 +40,20 @@ render() {
                         <h3 className = "form-header" >Form Details </h3>
                         <div className="form_preview_col_1">
                             <div className="form_preview_fields">
-                                <small>Name</small>
+                                <small>Name:</small>
                                 <p>{data.getGraduateSchoolStatementReviewForm.name}</p>
                             </div>
                             <div className="form_preview_fields"> 
-                                <small>Industry and Role Title Applied for</small>
-                                <p>{data.getGraduateSchoolStatementReviewForm.industry_applied_for}</p>
+                                <small>University and Ciurse Applied for:</small>
+                                <p>{data.getGraduateSchoolStatementReviewForm.university_and_course_applied_for}</p>
                             </div>
 
                              <div className="form_preview_fields"> 
-                                <small>Summary of Interest</small>
+                                <small>Summary of Interest:</small>
                                 <p>{data.getGraduateSchoolStatementReviewForm.summary_of_interest}</p>
+                            </div>
+                            <div className = "spacing">
+                                
                             </div>
                         </div>
                         

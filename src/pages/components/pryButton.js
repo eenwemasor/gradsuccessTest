@@ -137,6 +137,9 @@ class PryButton extends React.Component {
     }
   }
 
+
+
+
   render() {
     return (
       <div>
@@ -152,6 +155,16 @@ class PryButton extends React.Component {
           Item added to Cart successfully
         </div>
 
+         <Modal 
+           isOpen={this.state.showCoverLetterReviewFormModal}
+           contentLabel="Minimal Modal Example"
+           style={customStyles}
+           ariaHideApp={false}
+        >
+          <CoverLetterReviewForm package={this.state.form}/>
+          <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
+        </Modal>
+
         <Modal 
            isOpen={this.state.showCoverLetterRedraftModal}
            contentLabel="Minimal Modal Example"
@@ -162,15 +175,7 @@ class PryButton extends React.Component {
           <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
         </Modal>
 
-        <Modal 
-           isOpen={this.state.showCoverLetterReviewFormModal}
-           contentLabel="Minimal Modal Example"
-           style={customStyles}
-           ariaHideApp={false}
-        >
-          <CoverLetterReviewForm package={this.state.form}/>
-          <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
-        </Modal>
+       
 
 
         <Modal 

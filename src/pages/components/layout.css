@@ -1437,3 +1437,7 @@ progress {
 .passwordCard h1 {
     color: red;
 }
+
+.spacing{
+    height: 100px;
+}
