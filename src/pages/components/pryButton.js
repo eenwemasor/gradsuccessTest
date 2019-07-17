@@ -41,9 +41,9 @@ class PryButton extends React.Component {
   }
 
 
-     async handleOpenModal () {
+    handleOpenModal () {
       
-      await this.getItem();
+      this.getItem();
 
       if(this.state.form === "coverLetterRedraft"){
         this.setState({ showCoverLetterRedraftModal: true });
@@ -143,7 +143,6 @@ class PryButton extends React.Component {
   render() {
     return (
       <div>
-      
         <button
           css={this.props.small ? SmallButtonStyles : BigButtonStyles}
           onClick={this.handleOpenModal}
