@@ -29,10 +29,10 @@ class scholarshipCustomPackage extends Component {
               {" "}
               A Quick Glance at Our Essay Review Plans On this plan, we
               critically access the bigger story–Your assigned associate will
-              assess your essays and check them for overall engagement.
+              assess your essays and check them for overall engagement.<br />
 
               <Link to="/Scholarships/cv-resume" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
-
+              <br />
             </p>
             <div class="cu-container-inner">
               <PriceBox
@@ -59,7 +59,7 @@ class scholarshipCustomPackage extends Component {
               into the most competitive application processes.
               <br />
               <Link to="/Scholarships/cv-resume" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
-
+              <br />
             </p>
             <div class="cu-container-inner">
               <PriceBox
@@ -87,7 +87,7 @@ class scholarshipCustomPackage extends Component {
               <br /> 
 
               <Link to="/Scholarships/essays" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
-
+              <br />
             </p>
             <div class="cu-container-inner">
               <PriceBox
@@ -112,7 +112,7 @@ class scholarshipCustomPackage extends Component {
               into the most competitive application processes.
               <br />
               <Link to="/Scholarships/essays" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
-
+              <br />
             </p>
             <div class="cu-container-inner">
               <PriceBox

@@ -46,7 +46,7 @@ constructor(props) {
 
   handleForgotPassword(){
   	this.setState({
-  		forgotPassword:true
+  		forgotPassword:!this.state.forgotPassword
   	})
   }
 
@@ -153,10 +153,9 @@ constructor(props) {
 	               <p>Note: Ensure to change the password from your dashboard for security purposes.</p>
 
 	               <br />
+	               {this.state.forgotPassword ?<button className = "forgot_password" onClick = {this.handleForgotPassword}>Login</button>:
 
-	               <button className = "forgot_password" onClick = {this.handleForgotPassword}>forgot password</button>
-
-
+	               <button className = "forgot_password" onClick = {this.handleForgotPassword}>Forgot password</button>}
 	               
 	        </div>   
         </div>

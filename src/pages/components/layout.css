@@ -1185,7 +1185,6 @@ pre tt:after {
 .selectibleList {
     font-family: "Poppins", sans-serif;
     margin-top: 50px;
-
 }
 
 .selectibleList div {
@@ -1200,14 +1199,47 @@ pre tt:after {
 .explainInput {
     background-color: #47dcbc;
     padding: 30px;
-
 }
 
 .form-header {
     padding-top: 30px;
 }
+/*@media only screen and (max-width: 480px) {
 
-@media only screen and (max-width: 480px) {
+}*/
+@media only screen and (max-width: 580px) {
+    .cu-container-inner {
+        flex-direction: column;
+    }
+    .cart-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+   .cart-container{
+        margin: 00px auto;
+        padding: 20px  0px;
+    }
+    .cart-header{
+        padding: 20px;
+    }
+    .cart-layout{
+        font-size: 10px;
+    }
+    .cart-body button {
+        padding:2px 20px;
+    }
+    .co-container {
+        grid-template-columns: 1fr;
+    }
+    .co-inner {
+        grid-column: 1;
+        grid-template-columns: 1fr;
+        grid-gap: 5px;
+    }
+    .row {
+        grid-gap: 5px;
+    }
+
     .detail-form {
         grid-template-columns: 1fr;
         grid-gap: 0px;

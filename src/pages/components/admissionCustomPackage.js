@@ -33,6 +33,7 @@ class admissionCustomPackage extends Component {
               clinch an offer.
               <br />
               <Link to="/Admissions/cv-resume" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
+              <br />
             </p>
             <div className="cu-container-inner">
               <PriceBox
@@ -57,6 +58,7 @@ class admissionCustomPackage extends Component {
               you need for one resume.
               <br /> 
               <Link to="/Admissions/cv-resume" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
+              <br />
             </p>
             <div className="cu-container-inner">
               <PriceBox
@@ -82,8 +84,9 @@ class admissionCustomPackage extends Component {
               critically access the bigger story–Your assigned associate will
               assess your essays and check them for overall engagement. They
               will check if you have:
-             
+              <br />
              <Link to="/Admissions/essays" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
+             <br />
             </p>
             <div className="cu-container-inner">
               <PriceBox
@@ -110,6 +113,7 @@ class admissionCustomPackage extends Component {
               into the most competitive application processes.
               <br />
              <Link to="/Admissions/essays" activeStyle={{color: 'white'}} className="pad">More Detais</Link>
+             <br />
 
             </p>
             <div className="cu-container-inner">

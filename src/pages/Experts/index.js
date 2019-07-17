@@ -57,7 +57,6 @@ class IndexPage extends Component {
 
 
     render() {
-        if (this.state.loggedIn != "") {
             return (
                 <div>
                     <MainLayout />
@@ -88,14 +87,6 @@ class IndexPage extends Component {
                     <Footer />
                 </div>
             );
-        } else {
-            return (
-                <div>
-          
-        </div>
-            )
-
-        }
     }
 }
 export default IndexPage

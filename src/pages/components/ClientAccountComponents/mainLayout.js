@@ -74,7 +74,23 @@ export default class mainLayout extends Component {
       <div className = "d-header">
          <div className = "d-header-inner">
             <div className = "logo-image"><img  src={discouted} alt="Logo" /></div>
+            <div className = "hamburger-menu">
+              <div className = "stroke-1"></div>
+              <div className = "stroke-2"></div>
+              <div className = "stroke-3"></div>
+            </div>
             <div className = "d-menu-container">
+              <ul>
+                <li> <Link to="Client">Home</Link></li>
+                <li><Link to="Client/history">History</Link></li>
+                <li><Link to="Client/message">Messages</Link></li>
+                <li><Link to="Client/profile">Profile</Link></li>
+                
+              </ul>
+            </div>
+
+            <div className = "d-menu-container-mobile">
+             <div className = "logo-image"><img  src={discouted} alt="Logo" /></div>
               <ul>
                 <li> <Link to="Client">Home</Link></li>
                 <li><Link to="Client/history">History</Link></li>

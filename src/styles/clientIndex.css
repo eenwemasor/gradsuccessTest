@@ -38,6 +38,9 @@ body{
   color: white;
   font-size: 13px;
 }
+.d-menu-container-mobile{
+  display: none;
+}
 
 .d-notifications-area-container{
   display:grid;
@@ -396,16 +399,73 @@ body{
   border:1px solid darkgreen;
   cursor: pointer;
 }
+
 .client_expert_listing_btn_wrapper span{
     font-family: "Poppins", sans-serif;
     color: darkred;
-  }
+}
+
 .client_expert_listing_main h4{
   margin-bottom: 0px !important;
   text-transform: uppercase;
 }
+
 .client_expert_listing_main p{
   font-size: 12px;
   padding: 2px !important;
   line-height: 14px;
 }
+
+.hamburger-menu{
+  display: none;
+}
+
+@media only screen and (max-width: 500px) {
+    .d-menu-container-mobile{
+      display: block;
+      width: 50%;
+      height: 100vh;
+      padding: 20px;
+      position: absolute;
+      top: 50px;
+      left: 0px;
+      z-index: 1000;
+      background-color: #00a99d;
+      color: white;
+    }
+
+    .d-menu-container-mobile ul li{
+      list-style: none;
+      padding: 10px 10px;
+
+    }
+    .d-menu-container-mobile ul li a{
+      color: white;
+      font-size: 14px;
+    }
+
+    .logo-image{
+      display: none;
+    }
+
+    .d-menu-container{
+      display: none;
+    }
+
+    .hamburger-menu{
+      width: 40px;
+      height: 40px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    .stroke-1, .stroke-2, .stroke-3{
+      height:  15%;
+      background-color: white;
+      margin-top: 6px;
+      border-radius: 10px;
+    }
+
+}
+

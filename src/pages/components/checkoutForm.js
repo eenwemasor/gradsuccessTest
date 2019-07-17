@@ -283,10 +283,10 @@ export default class checkoutForm extends Component {
 							e.preventDefault();
 							createClientAccount({
 							variables: {
-							form_id:localStorage.getItem('form_id') || "no form",
-							package:localStorage.getItem('package') || "no form",
-							email:this.state.email,
-							password:this.state.password || "nothing"
+    							form_id:localStorage.getItem('form_id') || "no form",
+    							package:localStorage.getItem('package') || "no form",
+    							email:this.state.email,
+    							password:this.state.password || "nothing"
 							}
 							});
 							}}
@@ -296,16 +296,16 @@ export default class checkoutForm extends Component {
 							<h3>Personal Details</h3>
 							<div className="row">
 								<div className="col">
-									<input type="text" className={this.state.VERIFY_INPUTS.v_first_name ? "" : "required"} placeholder="First name"  onChange = {this.handleForm} id = "v_first_name"/>
+									<input type="text" required className={this.state.VERIFY_INPUTS.v_first_name ? "" : "required"} placeholder="First name"  onChange = {this.handleForm} id = "v_first_name"/>
 									<span className={this.state.VERIFY_INPUTS.v_first_name ? "show" : ""}>This field is required</span>
 								</div>
 								<div className="col">
-									<input type="text" className={this.state.VERIFY_INPUTS.v_last_name ? "" : "required"} placeholder="Last name"  onChange = {this.handleForm}  id = "v_last_name"/>
+									<input type="text" required className={this.state.VERIFY_INPUTS.v_last_name ? "" : "required"} placeholder="Last name"  onChange = {this.handleForm}  id = "v_last_name"/>
 									<span className={this.state.VERIFY_INPUTS.v_last_name ? "show" : ""}>This field is required</span>
 								</div>
 							</div>
 							<div className="row-full">
-								<input type="text" className={this.state.VERIFY_INPUTS.v_phone ? "" : "required"} placeholder="Phone" onChange = {this.handleForm}  id = "v_phone" />
+								<input type="text" required className={this.state.VERIFY_INPUTS.v_phone ? "" : "required"} placeholder="Phone" onChange = {this.handleForm}  id = "v_phone" />
 								<span className={this.state.VERIFY_INPUTS.v_phone ? "show" : ""}>This field is required</span>
 							</div>
 							<div className="row-full">

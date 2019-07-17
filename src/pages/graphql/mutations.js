@@ -52,7 +52,6 @@ export const CREATE_CLIENT_ACCOUNT = gql`
 		    password:$password
 				  ){
 				    form_id
-				    email
 		}
 	}
 `;
