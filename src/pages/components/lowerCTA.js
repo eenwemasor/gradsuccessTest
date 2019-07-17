@@ -44,8 +44,9 @@ constructor(props) {
         ESSAY REVIEWS </h4> </div>
         <div css={{
             padding: '40px'
+
         }}> <span  onClick={this.openModal}>
-        <PryButton text="Get Started"/> </span>
+        <button css={BigButtonStyles}>Get Started</button> </span>
         <Link to="about-us">
         <button css={{
             border: '2px solid yellow',
@@ -62,4 +63,26 @@ constructor(props) {
     </div>
 </div>
 )}}
+
+const BigButtonStyles = {
+  color: "#111",
+  textAlign: "center",
+  minWidth: "200px",
+  minHeight: "50px",
+  fontSize: "17px",
+  background: "yellow",
+  border: "none",
+  margin: "0px auto",
+  fontFamily: `"Poppins", sans-serif`,
+  fontWeight: "700",
+  cursor: "pointer",
+  textShadow: "1px 1px 3px rgba(0,0,0,0.2)",
+  display:"block",
+  ":hover": {
+    background: "#47dcbc",
+    color: "yellow",
+  },
+  transition: "all .2s ease-out",
+  boxShadow: "0 3px 10px rgba(0,0,0,0.5)",
+}
     export default LowerCTA

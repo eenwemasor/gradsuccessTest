@@ -22,6 +22,18 @@ body{
   padding-left: 10px;
   padding-top: 10px;
 }
+
+.logo-image-mobile{
+ background-color: white;
+}
+
+.logo-image-mobile img{
+  margin-bottom: 0px;
+  width: 100px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
 .d-menu-container ul{
   display:flex;
   list-style:none;
@@ -425,13 +437,13 @@ body{
       display: block;
       width: 50%;
       height: 100vh;
-      padding: 20px;
-      position: absolute;
-      top: 50px;
+      position: fixed;
+      top: 57px;
       left: 0px;
       z-index: 1000;
       background-color: #00a99d;
       color: white;
+      display: none;
     }
 
     .d-menu-container-mobile ul li{
@@ -453,19 +465,46 @@ body{
     }
 
     .hamburger-menu{
-      width: 40px;
-      height: 40px;
+      width: 27px;
+      height: 27px;
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      margin-left: 20px;
+
     }
     
     .stroke-1, .stroke-2, .stroke-3{
-      height:  15%;
+      height:  17%;
       background-color: white;
       margin-top: 6px;
       border-radius: 10px;
     }
+    .d-notifications-area-container {
+      display: flex;
+      width: 400px;
+    }
+
+    .d-header-inner {
+      display: flex;
+      justify-content: space-between;
+    }
+  .drop-down-main{
+    width: 100%;
+    top: 65px;
+    right: 0px;
+    z-index: 1000;
+    box-shadow: none;
+  }
+ .client_main_area{
+    grid-template-columns: 1fr;
+  }
+  .main-content {
+    width: 98%;
+  }
+  .client_main_area_menu{
+    flex-direction: row;
+  }
 
 }
 

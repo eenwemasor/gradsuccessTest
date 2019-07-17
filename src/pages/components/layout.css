@@ -1432,7 +1432,6 @@ progress {
 .other_skills {
     display: inline-grid;
     grid-template-columns: 1fr 8fr;
-
 }
 
 .forgot_password {

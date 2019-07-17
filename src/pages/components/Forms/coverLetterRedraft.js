@@ -103,12 +103,13 @@ export default class resumeReviewForm extends React.Component {
         document.getElementById("submittedSucces").style.display = "block"
         setTimeout(function() {
             if (document.getElementById("submittedSucces") != null) {
-                document.getElementById("submittedSucces").style.display = "none"
+               document.getElementById("submittedSucces").style.display = "none"
             }
         }, 2000)
         localStorage.setItem("form_id", this.state.data.form_id);
         window.location.reload();
     }
+
     onChange(e) {
         const firebase = require("firebase")
 

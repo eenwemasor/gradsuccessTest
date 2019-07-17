@@ -79,11 +79,32 @@ constructor(props) {
                 textAlign: 'center'
             }}>Over 8 years of helping applicants fulfill their dreams.</h1>
             <div onClick={this.openModal}>
-            <PryButton text="Work With An Expert" />
+            <button css={BigButtonStyles}>Work With An Expert</button>
             </div>
         </div>
         </div>
     </div>
 )}}
+
+const BigButtonStyles = {
+  color: "#111",
+  textAlign: "center",
+  minWidth: "200px",
+  minHeight: "50px",
+  fontSize: "17px",
+  background: "yellow",
+  border: "none",
+  margin: "0px auto",
+  fontFamily: `"Poppins", sans-serif`,
+  fontWeight: "700",
+  cursor: "pointer",
+  textShadow: "1px 1px 3px rgba(0,0,0,0.2)",
+  ":hover": {
+    background: "#47dcbc",
+    color: "yellow",
+  },
+  transition: "all .2s ease-out",
+  boxShadow: "0 3px 10px rgba(0,0,0,0.5)",
+}
 
 export default FeaturedTestimonial

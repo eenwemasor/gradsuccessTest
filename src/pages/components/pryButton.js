@@ -42,26 +42,29 @@ class PryButton extends React.Component {
 
 
     handleOpenModal () {
-      
+      var form_id = localStorage.getItem("form_id");
       this.getItem();
+      console.log(form_id)
 
-      if(this.state.form === "coverLetterRedraft"){
-        this.setState({ showCoverLetterRedraftModal: true });
-      }
-      else if(this.state.form === "coverLetterReviewForm"){
-        this.setState({ showCoverLetterReviewFormModal: true });
-      }
-      else if(this.state.form === "graduateSchoolEssayRedraftForm"){
-        this.setState({ showGraduateSchoolEssayRedraftFormModal: true });
-      }
-       else if(this.state.form === "graduateSchoolStatementReviewForm"){
-        this.setState({ showGraduateSchoolStatementReviewFormModal: true });
+      if(form_id != null){
+
       }else{
-        this.setState({ showResumeReviewFormModal: true });
+        if(this.state.form === "coverLetterRedraft"){
+          this.setState({ showCoverLetterRedraftModal: true });
+        }
+        else if(this.state.form === "coverLetterReviewForm"){
+          this.setState({ showCoverLetterReviewFormModal: true });
+        }
+        else if(this.state.form === "graduateSchoolEssayRedraftForm"){
+          this.setState({ showGraduateSchoolEssayRedraftFormModal: true });
+        }
+         else if(this.state.form === "graduateSchoolStatementReviewForm"){
+          this.setState({ showGraduateSchoolStatementReviewFormModal: true });
+        }else{
+          this.setState({ showResumeReviewFormModal: true });
+        }
       }
 
-      this.setState({ loading: false })
-      
     }
   
      handleCloseModal () {

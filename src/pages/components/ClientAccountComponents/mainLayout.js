@@ -90,7 +90,7 @@ export default class mainLayout extends Component {
             </div>
 
             <div className = "d-menu-container-mobile">
-             <div className = "logo-image"><img  src={discouted} alt="Logo" /></div>
+             <div className = "logo-image-mobile"><img  src={discouted} alt="Logo" /></div>
               <ul>
                 <li> <Link to="Client">Home</Link></li>
                 <li><Link to="Client/history">History</Link></li>
