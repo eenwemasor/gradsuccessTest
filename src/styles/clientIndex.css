@@ -1,7 +1,9 @@
+body{
+  font-family: "Poppins", sans-serif;
+}
 .d-header{
  background-color: #00a99d;
  padding: 0px;
-
 }
 .d-header-inner{
   padding: 0px;
@@ -370,4 +372,40 @@
 .logoutBtn:hover{
   opacity: 0.5;
   cursor: pointer;
+}
+.client_expert_listing_main{
+  background-color: #f9f9f9;
+  border-radius: 3px;
+  padding: 20px;
+  margin:10px;
+}
+
+.client_expert_listing_btn_wrapper{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.client_expert_listing_btn_wrapper button{
+  font-family: "Poppins", sans-serif;
+  padding:0px 20px;
+  margin-right: 20px;
+  background:transparent;
+  border: none;
+  font-size: 12px;
+  border-radius: 3px;
+  border:1px solid darkgreen;
+  cursor: pointer;
+}
+.client_expert_listing_btn_wrapper span{
+    font-family: "Poppins", sans-serif;
+    color: darkred;
+  }
+.client_expert_listing_main h4{
+  margin-bottom: 0px !important;
+  text-transform: uppercase;
+}
+.client_expert_listing_main p{
+  font-size: 12px;
+  padding: 2px !important;
+  line-height: 14px;
 }
