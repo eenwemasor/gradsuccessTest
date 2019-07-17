@@ -27,7 +27,7 @@ export const LOGGED_IN_USER = gql`
 
 export const COVER_LETTER_REVIEW_FORM = gql`
               query GetCoverLetterReviewForm($form_id: String!) {
-                getCoverLetterReviewForm(form_id: $form_id) {
+                getCoverLetterReview(form_id: $form_id) {
                   name
                   industry_applied_for
                   summary_of_interest
