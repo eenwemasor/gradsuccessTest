@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 import { CREATE_GRADUATE_SCHOOL_STATEMENT_REVIEW } from '../../graphql/mutations';
 import download from "../../../images/download.png"
 import loader from "../../../images/loader.gif"
-// import firebase from 'firebase'
+import ThankYou from "../formCompletePage"
 
 export default class resumeReviewForm extends React.Component {
 
@@ -22,9 +22,11 @@ export default class resumeReviewForm extends React.Component {
                 has_expert: false,
                 form_id: "empty"
             },
+            form_submit_success:false,
         }
         this.handleFormInput = this.handleFormInput.bind(this);
-        this.onChange = this.onChange.bind(this)
+        this.onChange = this.onChange.bind(this);
+        this.formSubmitted = this.formSubmitted.bind(this)
     }
 
     handleFormInput(event) {
@@ -37,23 +39,12 @@ export default class resumeReviewForm extends React.Component {
 
         }))
     }
-    generateFormID() {
-        var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
-        var string_length = 12;
-        var randomstring = '';
-
-        for (var i = 0; i < string_length; i++) {
-            var rnum = Math.floor(Math.random() * chars.length);
-            randomstring += chars.substring(rnum, rnum + 1);
-        }
-        return randomstring;
-    }
 
 componentDidMount() {
         this.setState(prevState => ({
             data: {
                 ...prevState.data,
-                form_id: this.generateFormID()
+                form_id: localStorage.getItem("form_id")
             }
 
         }))
@@ -63,13 +54,16 @@ componentDidMount() {
 
     formSubmitted() {
         document.getElementById("submittedSucces").style.display = "block"
+
         setTimeout(function() {
             if (document.getElementById("submittedSucces") != null) {
                 document.getElementById("submittedSucces").style.display = "none"
             }
-        }, 2000)
-        localStorage.setItem("form_id", this.state.data.form_id);
-        window.location.reload();
+        }, 5000)
+        this.setState({
+          form_submit_success:true
+        })
+
     }
 
     onChange(e) {
@@ -127,99 +121,104 @@ componentDidMount() {
 
 
     render() {
+      if(!this.state.form_submit_success){
         return (
             <div>
+              <div className = "detail-form reviewModal">
+                    <Mutation 
+                        mutation={CREATE_GRADUATE_SCHOOL_STATEMENT_REVIEW}
+                        onError={this.error} 
+                        onCompleted={data=>{
+                          this.formSubmitted()
+                        }}
+                        >
+                        {(createGraduateSchoolStatementReviewData, { data,loading, error}) => (
+                        <div className = "loader-wrapper">
+                        <div id="submittedSucces" className="SuccessTagForm">
+                        Success! Your Details was submitted...
+                      </div>
+                          <form 
+                          onSubmit={e => {
+                            e.preventDefault();
+                            createGraduateSchoolStatementReviewData({ 
+                              variables: this.state.data
+                              });
+                          }}
+                          className = "checkout-form-container">
+                          <h3 className = "form-header">Please Fill with correct details </h3>
+                            <div className="row-full">
 
-      <div className = "detail-form reviewModal">
-            <Mutation 
-                mutation={CREATE_GRADUATE_SCHOOL_STATEMENT_REVIEW}
-                onError={this.error} 
-                onCompleted={data=>{
-                  this.formSubmitted()
-                }}
-                >
-                {(createGraduateSchoolStatementReviewData, { data,loading, error}) => (
-                <div className = "loader-wrapper">
-                <div id="submittedSucces" className="SuccessTagForm">
-                Success! Your Details was submitted...
-              </div>
-                  <form 
-                  onSubmit={e => {
-                    e.preventDefault();
-                    createGraduateSchoolStatementReviewData({ 
-                      variables: this.state.data
-                      });
-                  }}
-                  className = "checkout-form-container">
-                  <h3 className = "form-header">Please Fill with correct details </h3>
-                    <div className="row-full">
+                              <input 
+                              type="text"  
+                              placeholder="Name (Surname First)"   
+                              id = "name"
+                              name = "name"
+                              onChange = {this.handleFormInput}
+                              required />
+                              <br />
 
-                      <input 
-                      type="text"  
-                      placeholder="Name (Surname First)"   
-                      id = "name"
-                      name = "name"
-                      onChange = {this.handleFormInput}
-                      required />
-                      <br />
-
-                      <input 
-                      type="text"
-                      placeholder="University and Course Applied for?"  
-                      id = "university_and_course_applied_for" 
-                      name = "university_and_course_applied_for" 
-                      required onChange = {this.handleFormInput}
-                      required/>
-                      
-                      <br />
-                      <textarea type="text"  
-                      placeholder="Summary of Interest in Course?"   
-                      id = "summary_of_interest" 
-                      name = "summary_of_interest"  
-                      onChange = {this.handleFormInput}
-                      rows = '4' required>
-                      </textarea>
+                              <input 
+                              type="text"
+                              placeholder="University and Course Applied for?"  
+                              id = "university_and_course_applied_for" 
+                              name = "university_and_course_applied_for" 
+                              required onChange = {this.handleFormInput}
+                              required/>
+                              
+                              <br />
+                              <textarea type="text"  
+                              placeholder="Summary of Interest in Course?"   
+                              id = "summary_of_interest" 
+                              name = "summary_of_interest"  
+                              onChange = {this.handleFormInput}
+                              rows = '4' required>
+                              </textarea>
+                            </div>
+                            <br />
+                            <input type = "submit" className = "submit-details" value = "Submit" id = "submitBtn"/>
+                                                  
+                        </form>
+                        {loading && <div className = "loader"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
+                         {error && <div className="FailedTagForm"> Failed! Something is not right...</div>}
                     </div>
-                    <br />
-                    <input type = "submit" className = "submit-details" value = "Submit" id = "submitBtn"/>
-                                          
-                </form>
-                {loading && <div className = "loader"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
-                 {error && <div className="FailedTagForm"> Failed! Something is not right...</div>}
-            </div>
-            )}
-            
+                    )}
+                    
 
 
 
-            </Mutation>
+                    </Mutation>
 
 
-          <div className = "explainInput">
-              <h3>Graduate School Statement Review Form *</h3>
-                <p>
-                    The information to be collected from this form would be used as a basis for your resume and cover letter. For experienced personnel with over 5 years professional experience, just upload your CV. the form is not required. 
-                 </p>
+                  <div className = "explainInput">
+                      <h3>Graduate School Statement Review Form *</h3>
+                        <p>
+                            The information to be collected from this form would be used as a basis for your resume and cover letter. For experienced personnel with over 5 years professional experience, just upload your CV. the form is not required. 
+                         </p>
 
-                <span className = "required">* Required</span>
-                 <ul>
-                    <li>
-                        <h6>Name (Surname First) *</h6>
-                        <p>Provide your full name. <i>Your Surname should come first</i></p>
-                    </li>
-                    <li>
-                        <h6>Industry and Role Title Applied for? *</h6>
-                        <p>State the University you are applying for and the name of the course. e.g Financial Analyst in a Manufacturing firm</p>
-                    </li>
-                    <li>
-                        <h6>Summary of Interest in Course?</h6>
-                        <p>In short words, why are you applying to this University and Course? e.g. I have recently discovered the company's energy management division and previous client services provided. I particularly feel inspired by their ability of reducing energy consumption in client a by 20% annually as reported in their case study section on their website. I want to be part of a team like this actively changing the world in energy!</p>
-                    </li>
-                 </ul>
-          </div>   
-        </div>
-      
-      </div>
+                        <span className = "required">* Required</span>
+                         <ul>
+                            <li>
+                                <h6>Name (Surname First) *</h6>
+                                <p>Provide your full name. <i>Your Surname should come first</i></p>
+                            </li>
+                            <li>
+                                <h6>Industry and Role Title Applied for? *</h6>
+                                <p>State the University you are applying for and the name of the course. e.g Financial Analyst in a Manufacturing firm</p>
+                            </li>
+                            <li>
+                                <h6>Summary of Interest in Course?</h6>
+                                <p>In short words, why are you applying to this University and Course? e.g. I have recently discovered the company's energy management division and previous client services provided. I particularly feel inspired by their ability of reducing energy consumption in client a by 20% annually as reported in their case study section on their website. I want to be part of a team like this actively changing the world in energy!</p>
+                            </li>
+                         </ul>
+                  </div>   
+                </div>
+              
+              </div>
         );
+        }else{
+          return(
+             <ThankYou />
+          )
+        }
     }
 }

@@ -9,11 +9,14 @@ import AccountInfo from "./account"
 import LoginForm from "../components/Forms/loginForm"
 import LogoutForm from "../components/Forms/logoutForm"
 
-
 import LeaveAMessageForm from "../components/Forms/leaveAMessageForm"
 import ComplainForm from "../components/Forms/complainForm"
 import ChangeCV from "../components/Forms/changeCV"
 
+import account_info from "../../images/icons/account_info.png"
+import leave_a_message from "../../images/icons/leave_a_message.png"
+import change_cv from "../../images/icons/change_cv.png"
+import complaint from "../../images/icons/complaint.png"
 
 const customStyles = {
   content : {
@@ -95,9 +98,18 @@ class IndexPage extends Component {
                                     <button id = "leaveAMessage" onClick = {this.handleDisplayComponent}>Leave a Message</button>
                                     <button id = "leaveAComplain" onClick = {this.handleDisplayComponent}>Have a Complain ?</button>
                                     <button id = "changeCV" onClick = {this.handleDisplayComponent}> Change CV</button>
-                                    <button onClick = {this.handleDisplayComponent}>View Request Details</button>
                                     <LogoutForm />
                                 </div>
+
+                                <div className = "client_main_area_menu_icon">
+                                   <img  id = "accountInfo" onClick={this.handleDisplayComponent} src={account_info} alt="account info" />
+                                   <img  id = "leaveAMessage" onClick={this.handleDisplayComponent} src={leave_a_message} alt="leave a essage" />
+                                   <img  id = "leaveAComplain" onClick={this.handleDisplayComponent} src={complaint} alt="Complaint" />
+                                   <img  id = "changeCV" onClick={this.handleDisplayComponent} src={change_cv} alt="change cv" />
+                                    <LogoutForm />
+                                </div>
+
+
                                 <div>
                                     <div className="client_main_area_content_area">
                                     {this.state.accountInfo && <AccountInfo table = {data.me.package} userID = {data.me.form_id}/>}

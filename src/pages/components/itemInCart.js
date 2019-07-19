@@ -57,17 +57,22 @@ export default class itemInCart extends Component {
   }
 
   componentDidMount() {
-    let _item = localStorage.getItem("ItemsInCart")
-    let cartItem = JSON.parse(localStorage.getItem("ItemsInCart")) || []
+    if(localStorage.getItem("ItemsInCart") === "undefined"){
+        window.location = '/'
+    }else{
+      let _item = localStorage.getItem("ItemsInCart")
+      let cartItem = JSON.parse(localStorage.getItem("ItemsInCart")) || []
 
-    if (_item) {
-      _item = JSON.parse(_item)
-      _item.forEach(this.addFormLS)
+      if (_item) {
+        _item = JSON.parse(_item)
+        _item.forEach(this.addFormLS)
+      }
+      this.setState({
+        cartItem: cartItem.length,
+        ItemInCart: "itemExist"
+      })
     }
-    this.setState({
-      cartItem: cartItem.length,
-      ItemInCart: "itemExist"
-    })
+    
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -93,13 +98,30 @@ export default class itemInCart extends Component {
     }
   }
 
-  componentWillUnmount() {
+  setPackageVariable(itemInCart){
+        var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
+        var string_length = 12;
+        var randomstring = '';
 
+        for (var i = 0; i < string_length; i++) {
+            var rnum = Math.floor(Math.random() * chars.length);
+            randomstring += chars.substring(rnum, rnum + 1);
+        }
+
+        var form = itemInCart[0].form;
+        localStorage.setItem("form_id", randomstring);
+        localStorage.setItem("package", form);
+  }
+
+
+  componentWillUnmount() {
     let cartItem = JSON.parse(localStorage.getItem("ItemsInCart")) || []
     if (cartItem.length >= 3) {
       localStorage.setItem("CheckoutAmount", this.state.discountedAmount)
+      this.setPackageVariable(cartItem);
     } else {
       localStorage.setItem("CheckoutAmount", this.state.totalAmount)
+      this.setPackageVariable(cartItem);
     }
   }
 

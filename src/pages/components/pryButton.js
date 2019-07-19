@@ -2,13 +2,6 @@ import React from "react"
 import { jsx } from "@emotion/core"
 import "./layout.css"
 import Modal from "react-modal"
-import CoverLetterRedraft from "./Forms/coverLetterRedraft"
-import CoverLetterReviewForm from "./Forms/coverLetterReviewForm"
-import GraduateSchoolEssayRedraftForm from "./Forms/graduateSchoolEssayRedraftForm"
-import GraduateSchoolStatementReviewForm from "./Forms/graduateSchoolStatementReviewForm"
-import ResumeReviewForm from "./Forms/resumeReviewForm"
-
-
 
 const customStyles = {
   content : {
@@ -20,70 +13,16 @@ const customStyles = {
   }
 };
 
-
 class PryButton extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       addItem: false,
       show: false,
-      showModal: false,
-      showCoverLetterRedraftModal:false,
-      showCoverLetterReviewFormModal:false,
-      showGraduateSchoolEssayRedraftFormModal:false,
-      showGraduateSchoolStatementReviewFormModal:false,
-      showResumeReviewFormModal:false,
-      form: this.props.form,
     }
-
-    this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
 
-    handleOpenModal () {
-      var form_id = localStorage.getItem("form_id");
-      this.getItem();
-      console.log(form_id)
-
-      if(form_id != null){
-
-      }else{
-        if(this.state.form === "coverLetterRedraft"){
-          this.setState({ showCoverLetterRedraftModal: true });
-        }
-        else if(this.state.form === "coverLetterReviewForm"){
-          this.setState({ showCoverLetterReviewFormModal: true });
-        }
-        else if(this.state.form === "graduateSchoolEssayRedraftForm"){
-          this.setState({ showGraduateSchoolEssayRedraftFormModal: true });
-        }
-         else if(this.state.form === "graduateSchoolStatementReviewForm"){
-          this.setState({ showGraduateSchoolStatementReviewFormModal: true });
-        }else{
-          this.setState({ showResumeReviewFormModal: true });
-        }
-      }
-
-    }
-  
-     handleCloseModal () {
-      
-      if(this.state.form === "coverLetterRedraft"){
-        this.setState({ showCoverLetterRedraftModal: false });
-      }
-      else if(this.state.form === "coverLetterReviewForm"){
-        this.setState({ showCoverLetterReviewFormModal: false });
-      }
-      else if(this.state.form === "graduateSchoolEssayRedraftForm"){
-        this.setState({ showGraduateSchoolEssayRedraftFormModal: false });
-      }
-       else if(this.state.form === "graduateSchoolStatementReviewForm"){
-        this.setState({ showGraduateSchoolStatementReviewFormModal: false });
-      }else{
-        this.setState({ showResumeReviewFormModal: false });
-      }
-    }
 
   getItem = () => {
     if (typeof this.props.itemDescription === "undefined") {
@@ -96,7 +35,9 @@ class PryButton extends React.Component {
         itemArr.push({
           IitemDescription: this.props.itemDescription,
           Price: this.props.price,
+          form:this.props.form,
         })
+        
         itemArr = Array.from(new Set(itemArr))
 
         localStorage.setItem("ItemsInCart", JSON.stringify(itemArr))
@@ -120,6 +61,7 @@ class PryButton extends React.Component {
         itemArr.push({
           IitemDescription: this.props.itemDescription,
           Price: this.props.price,
+          form:this.props.form,
         })
         localStorage.setItem("ItemsInCart", JSON.stringify(itemArr))
 
@@ -148,7 +90,7 @@ class PryButton extends React.Component {
       <div>
         <button
           css={this.props.small ? SmallButtonStyles : BigButtonStyles}
-          onClick={this.handleOpenModal}
+          onClick={this.getItem}
         >
           {this.props.text}
         </button>
@@ -156,59 +98,6 @@ class PryButton extends React.Component {
         <div id="the" className="SuccessTag">
           Item added to Cart successfully
         </div>
-
-         <Modal 
-           isOpen={this.state.showCoverLetterReviewFormModal}
-           contentLabel="Minimal Modal Example"
-           style={customStyles}
-           ariaHideApp={false}
-        >
-          <CoverLetterReviewForm package={this.state.form}/>
-          <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
-        </Modal>
-
-        <Modal 
-           isOpen={this.state.showCoverLetterRedraftModal}
-           contentLabel="Minimal Modal Example"
-           style={customStyles}
-           ariaHideApp={false}
-        >
-          <CoverLetterRedraft package={this.state.form}/>
-          <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
-        </Modal>
-
-       
-
-
-        <Modal 
-           isOpen={this.state.showGraduateSchoolEssayRedraftFormModal}
-           contentLabel="Minimal Modal Example"
-           style={customStyles}
-           ariaHideApp={false}
-        >
-          <GraduateSchoolEssayRedraftForm package={this.state.form} />
-          <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
-        </Modal>
-
-        <Modal 
-           isOpen={this.state.showGraduateSchoolStatementReviewFormModal}
-           contentLabel="Minimal Modal Example"
-           style={customStyles}
-           ariaHideApp={false}
-        >
-          <GraduateSchoolStatementReviewForm package={this.state.form} />
-          <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
-        </Modal>
-
-        <Modal 
-           isOpen={this.state.showResumeReviewFormModal}
-           contentLabel="Minimal Modal Example"
-           style={customStyles}
-           ariaHideApp={false}
-        >
-          <ResumeReviewForm package={this.state.form} />
-          <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
-        </Modal>
       </div>
     )
   }

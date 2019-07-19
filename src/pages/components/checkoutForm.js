@@ -5,6 +5,7 @@ import { Mutation } from 'react-apollo';
 import { CREATE_CLIENT_ACCOUNT } from '../graphql/mutations';
 import loader from "../../images/loader.gif"
 import PaystackButton from 'react-paystack';
+
 export default class checkoutForm extends Component {
     constructor(props) {
         super(props);
@@ -24,13 +25,15 @@ export default class checkoutForm extends Component {
                 v_email: true,
             },
             submitForm: true,
-            success: false
 
         }
         this.handleForm = this.handleForm.bind(this)
         this.verifyFormSubmit = this.verifyFormSubmit.bind(this)
         this.formSubmitted = this.formSubmitted.bind(this)
+
+        this.paystackPaymentSuccess = this.paystackPaymentSuccess.bind(this);
     }
+
     componentDidMount() {
         var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
         var string_length = 8;
@@ -40,17 +43,19 @@ export default class checkoutForm extends Component {
             randomstring += chars.substring(rnum, rnum + 1);
         }
         let amount = localStorage.getItem("CheckoutAmount")
+        
         this.setState({
             amount: amount * 100,
             password: randomstring
         })
-
     }
+
     verifyFormSubmit() {
         this.setState({
             submitForm: true
         })
     }
+
     handleForm(e) {
         if (e.target.value === "") {
             let element = e.target.id;
@@ -180,16 +185,23 @@ export default class checkoutForm extends Component {
         }
 
     }
-    callback = (response) => {
-        localStorage.removeItem('ItemsInCart');
-        localStorage.removeItem("form_id")
+
+    paystackPaymentSuccess(response){
         this.setState({
             success: "success"
         })
+        localStorage.setItem("yshKSMCis129_#&NISis", this.state.password);
+        setTimeout(function(){
+        window.location = '/Application-details'
+        localStorage.removeItem("ItemsInCart");
+        localStorage.removeItem("CheckoutAmount");
+            },4000)
     }
+
     close = () => {
         console.log("Payment closed");
     }
+
     getReference = () => {
         //you can put any unique reference implementation code here
         let text = "";
@@ -198,6 +210,7 @@ export default class checkoutForm extends Component {
             text += possible.charAt(Math.floor(Math.random() * possible.length));
         return text;
     }
+
     formSubmitted(data) {
         document.getElementById("submittedSucces").style.display = "block"
         setTimeout(function() {
@@ -209,57 +222,64 @@ export default class checkoutForm extends Component {
             success: "checkout"
         })
     }
+
     render() {
-            if (this.state.success === "success") {
-                return (
-                    <div className = 'thank-you'>
-                    	<h1>Thank You <i>!</i></h1>
-                    	<div >
-                    		<span>Thank you, Your Payment was successful.</span><br />
-                    		<span>An Email was sent to your e-mail wih details for the transaction, please keep for references</span>
-                    		<div className = "passwordCard">This is your login password: <h1>{this.state.password}</h1></div>
-                    		<div className = "cartStyle">
-                    			
-                    			<Link to="/" activeStyle={{color: 'white'}}><button>checkout other services</button></Link>
-                    		</div>
-                    	</div>
+        if (this.state.success === "success") {
+            return (
+                <div className = 'thank-you'>
+                    <div className = "thank-you-inner-left">
+                        <h1>Thank You <i>!</i></h1>
+                        <span>Thank you, Your Payment was successful.</span><br />
+                        <span>
+                            An Email was sent to your e-mail wih details for the transaction, please keep for references
+                        </span>
                     </div>
-                )
-            } else if (this.state.success === "checkout") {
-                return (
+                	<div className = "loader-wrapper">
+                        <br />
+                        <br />
                         <div>
-                        	<div className = "co-container">
-                        		<div className = "co-inner">
-                        			<div>
-                        				<ul className = "paymentDetails">
-                        					<li><strong>Name:</strong>   <i>{this.state.lastName + " " + this.state.firstName}</i></li>
-                        					<li><strong>Email Address:</strong>  <i>{this.state.email}</i></li>
-                        					<li><strong>Phone Number: </strong>  <i>{this.state.phone}</i></li>
-                        				</ul>
-                        				<div>
-                        					<div className = "cartStyle">
-                        						<PaystackButton
-                        							text="Proceed to payment"
-                        							className= ""
-                        							callback={this.callback}
-                        							close={this.close}
-                        							disabled={false}/*disable payment button*/
-                        							embed={false} /*payment embed in your app instead of a pop up*/
-                        							reference={this.getReference()}
-                        							email={this.state.email}
-                        							amount={this.state.amount}
-                        							paystackkey={this.state.key}
-                        							tag="button"/*it can be button or a or input tag */
-                        							/>
-                        						</div>
-                        						
-                        					</div>
-                        				</div>
-                        				<CheckoutSummary />
-                        			</div>
-                        		</div>
-		
-	</div>
+                            <div className = " loader"><img className="loader-img" src={loader} alt="gradsuccess" />
+                            </div>
+                        </div>
+                        <div> redirecting... </div>
+                        
+                	</div>
+                </div>
+            )
+        } else if (this.state.success === "checkout") {
+            return (
+                <div>
+                	<div className = "co-container">
+                		<div className = "co-inner">
+                			<div>
+                				<ul className = "paymentDetails">
+                					<li><strong>Name:</strong>   <i>{this.state.lastName + " " + this.state.firstName}</i></li>
+                					<li><strong>Email Address:</strong>  <i>{this.state.email}</i></li>
+                					<li><strong>Phone Number: </strong>  <i>{this.state.phone}</i></li>
+                				</ul>
+                				<div>
+                					<div className = "cartStyle">
+                						<PaystackButton
+                							text="Proceed to payment"
+                							className= ""
+                							callback={this.paystackPaymentSuccess}
+                							close={this.close}
+                							disabled={false}/*disable payment button*/
+                							embed={false} /*payment embed in your app instead of a pop up*/
+                							reference={this.getReference()}
+                							email={this.state.email}
+                							amount={this.state.amount}
+                							paystackkey={this.state.key}
+                							tag="button"/*it can be button or a or input tag */
+                							/>
+                					</div>
+                						
+                				</div>
+                				</div>
+                				<CheckoutSummary />
+                			</div>
+                	</div>
+                </div>
 	)
 	}else{
 	return (
@@ -326,7 +346,6 @@ export default class checkoutForm extends Component {
 				<CheckoutSummary />
 			</div>
 		</div>
-		
 	</div>
 	);
 	}

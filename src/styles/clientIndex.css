@@ -331,6 +331,10 @@ body{
   opacity: 0.6;
   transition: 0.4s;
 }
+
+.client_main_area_menu_icon{
+  display: none;
+}
 .client_main_area_content_area{
   width: 80%;
   margin: auto;
@@ -496,15 +500,35 @@ body{
     z-index: 1000;
     box-shadow: none;
   }
+
  .client_main_area{
     grid-template-columns: 1fr;
   }
+
   .main-content {
     width: 98%;
   }
-  .client_main_area_menu{
-    flex-direction: row;
-  }
 
+  .client_main_area_menu{
+    display: none
+  }
+  .client_main_area_menu_icon{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #19a99d;
+  }
+  .client_main_area_menu_icon img{
+    width: 40px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  .client_main_area_menu_icon img:hover{
+    opacity: 0.3;
+  }
+  
+  .client_main_area_menu_icon{
+    display: flex;
+  }
 }
 

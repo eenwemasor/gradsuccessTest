@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import { CREATE_RESUME_REVIEW_FORM } from '../../graphql/mutations';
 import loader from "../../../images/loader.gif"
 import download from "../../../images/download.png"
-// import firebase from 'firebase'
+import ThankYou from "../formCompletePage"
 
 export default class resumeReviewForm extends React.Component {
     constructor(props) {
@@ -18,10 +18,12 @@ export default class resumeReviewForm extends React.Component {
                 package: this.props.package,
                 has_expert: false,
                 form_id: "empty"
-            }
+            },
+            form_submit_success:false,
         }
         this.handleFormInput = this.handleFormInput.bind(this);
         this.onChange = this.onChange.bind(this)
+        this.formSubmitted = this.formSubmitted.bind(this)
     }
     handleFormInput(event) {
         const { name, value } = event.target;
@@ -32,22 +34,12 @@ export default class resumeReviewForm extends React.Component {
             }
         }))
     }
-    generateFormID() {
-        var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
-        var string_length = 12;
-        var randomstring = '';
-        for (var i = 0; i < string_length; i++) {
-            var rnum = Math.floor(Math.random() * chars.length);
-            randomstring += chars.substring(rnum, rnum + 1);
-        }
-        return randomstring;
-    }
 
     componentDidMount() {
         this.setState(prevState => ({
             data: {
                 ...prevState.data,
-                form_id: this.generateFormID()
+                form_id: localStorage.getItem("form_id")
             }
         }))
         localStorage.setItem("package",this.props.package);
@@ -55,13 +47,16 @@ export default class resumeReviewForm extends React.Component {
     
     formSubmitted() {
         document.getElementById("submittedSucces").style.display = "block"
+
         setTimeout(function() {
             if (document.getElementById("submittedSucces") != null) {
                 document.getElementById("submittedSucces").style.display = "none"
             }
-        }, 2000)
-        localStorage.setItem("form_id", this.state.data.form_id);
-        window.location.reload();
+        }, 5000)
+        this.setState({
+          form_submit_success:true
+        })
+
     }
     onChange(e) {
        const firebase = require("firebase")
@@ -107,80 +102,86 @@ export default class resumeReviewForm extends React.Component {
             })
     }
     render() {
+        if(!this.state.form_submit_success){
         return (
             <div>
-    <div className = "detail-form reviewModal">
-        <Mutation
-        mutation={CREATE_RESUME_REVIEW_FORM}
-        onError={this.error}
-        onCompleted={data=>{
-        this.formSubmitted()
-        }}>
-        {(createResumeReviewData, { data,loading, error}) => (
-        <div className = "loader-wrapper">
-            <div id="submittedSucces" className="SuccessTagForm">
-                Success! Your Details was submitted...
-            </div>
-            <form
-                onSubmit={e => {
-                e.preventDefault();
-                createResumeReviewData({
-                variables: this.state.data
-                });
-                }}
-                className = "checkout-form-container">
-                <h3 className = "form-header" >Please Fill with correct details </h3>
-                <div className="row-full">
-                    <input type="text"
-                    placeholder="Name (Surname First)"
-                    id = "name"
-                    name = "name"
-                    onChange = {this.handleFormInput} required/>
-                    <br />
-                    <input type="text" className=""
-                    placeholder="Industry and Role Title Applied for?"
-                    id = "industry_applied_for"
-                    name = "industry_applied_for" onChange = {this.handleFormInput} required/>
-                    <br />
-                    <textarea type="text"
-                    placeholder="Summary of Interest in Role"
-                    id = "summary_of_interest"
-                    name = "summary_of_interest"
-                    rows = '4' onChange = {this.handleFormInput} required>
-                    </textarea>
+                    <div className = "detail-form reviewModal">
+                        <Mutation
+                        mutation={CREATE_RESUME_REVIEW_FORM}
+                        onError={this.error}
+                        onCompleted={data=>{
+                        this.formSubmitted()
+                        }}>
+                        {(createResumeReviewData, { data,loading, error}) => (
+                        <div className = "loader-wrapper">
+                            <div id="submittedSucces" className="SuccessTagForm">
+                                Success! Your Details was submitted...
+                            </div>
+                            <form
+                                onSubmit={e => {
+                                e.preventDefault();
+                                createResumeReviewData({
+                                variables: this.state.data
+                                });
+                                }}
+                                className = "checkout-form-container">
+                                <h3 className = "form-header" >Please Fill with correct details </h3>
+                                <div className="row-full">
+                                    <input type="text"
+                                    placeholder="Name (Surname First)"
+                                    id = "name"
+                                    name = "name"
+                                    onChange = {this.handleFormInput} required/>
+                                    <br />
+                                    <input type="text" className=""
+                                    placeholder="Industry and Role Title Applied for?"
+                                    id = "industry_applied_for"
+                                    name = "industry_applied_for" onChange = {this.handleFormInput} required/>
+                                    <br />
+                                    <textarea type="text"
+                                    placeholder="Summary of Interest in Role"
+                                    id = "summary_of_interest"
+                                    name = "summary_of_interest"
+                                    rows = '4' onChange = {this.handleFormInput} required>
+                                    </textarea>
+                                </div>
+                                <br />
+                                <input type = "submit" className = "submit-details" value = "Submit" id = "submitBtn"/>
+                            </form>
+                            {loading && <div className = "loader"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
+                            {error && <div className="FailedTagForm"> Failed! Something is not right...</div>}
+                        </div>
+                        )}
+                        </Mutation>
+                        <div className = "explainInput">
+                            <h3>Resume Review Form</h3>
+                            <p>
+                                The information to be collected from this form would be used as a basis for your resume and cover letter. For experienced personnel with over 5 years professional experience, just upload your CV. the form is not required.
+                            </p>
+                            <ul>
+                                <li>
+                                    <h6>Name (Surname First) *</h6>
+                                    <p>Provide your full name. <i>Your Surname should come first</i></p>
+                                </li>
+                                <li>
+                                    <h6>Industry and Role Title Applied for? *</h6>
+                                    <p>State the function you are applying for and the industry type. e.g Financial Analyst in a Manufacturing firm</p>
+                                </li>
+                                <li>
+                                    <h6>Summary of Interest in Role *</h6>
+                                    <p>In short words, why are you applying to this company/role? e.g. I have recently discovered the company's energy management division and previous client services provided. I particularly feel inspired by their ability of reducing energy consumption in client a by 20% annually as reported in their case study section on their website. I want to be part of a team like this actively changing the world in energy!</p>
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                    
                 </div>
-                <br />
-                <input type = "submit" className = "submit-details" value = "Submit" id = "submitBtn"/>
-            </form>
-            {loading && <div className = "loader"><img className="loader-img" src={loader} alt="gradsuccess" /></div>}
-            {error && <div className="FailedTagForm"> Failed! Something is not right...</div>}
-        </div>
-        )}
-        </Mutation>
-        <div className = "explainInput">
-            <h3>Resume Review Form</h3>
-            <p>
-                The information to be collected from this form would be used as a basis for your resume and cover letter. For experienced personnel with over 5 years professional experience, just upload your CV. the form is not required.
-            </p>
-            <ul>
-                <li>
-                    <h6>Name (Surname First) *</h6>
-                    <p>Provide your full name. <i>Your Surname should come first</i></p>
-                </li>
-                <li>
-                    <h6>Industry and Role Title Applied for? *</h6>
-                    <p>State the function you are applying for and the industry type. e.g Financial Analyst in a Manufacturing firm</p>
-                </li>
-                <li>
-                    <h6>Summary of Interest in Role *</h6>
-                    <p>In short words, why are you applying to this company/role? e.g. I have recently discovered the company's energy management division and previous client services provided. I particularly feel inspired by their ability of reducing energy consumption in client a by 20% annually as reported in their case study section on their website. I want to be part of a team like this actively changing the world in energy!</p>
-                </li>
-            </ul>
-            
-        </div>
-    </div>
-    
-</div>
         );
+        }else{
+          return(
+             <ThankYou />
+          )
+        }
     }
 }
