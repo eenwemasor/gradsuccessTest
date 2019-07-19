@@ -17,14 +17,20 @@ export default class ApplicationDetail extends Component {
             showGraduateSchoolEssayRedraftForm:false,
             showGraduateSchoolStatementReviewForm:false,
             showResumeReviewForm:false,
-            package: localStorage.getItem("package")
+            package: null
         }
     }
 
     componentDidMount(){
+
+
         if(localStorage.getItem("yshKSMCis129_#&NISis") === null){
             window.location = '/';
         }else{
+            this.setState({
+                 package:localStorage.getItem("package")
+            })
+
             if(this.state.package === "coverLetterRedraft"){
               this.setState({ showCoverLetterRedraft: true });
             }
