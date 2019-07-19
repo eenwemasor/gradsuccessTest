@@ -22,25 +22,25 @@ export default class ApplicationDetail extends Component {
     }
 
     componentDidMount(){
-
-
         if(localStorage.getItem("yshKSMCis129_#&NISis") === null){
             window.location = '/';
         }else{
-            this.setState({
-                 package:localStorage.getItem("package")
-            })
 
-            if(this.state.package === "coverLetterRedraft"){
+            this.setState({
+                package:localStorage.getItem("package")
+            })
+            var packageForm = localStorage.getItem("package");
+
+            if( packageForm === "coverLetterRedraft"){
               this.setState({ showCoverLetterRedraft: true });
             }
-            else if(this.state.package === "coverLetterReviewForm"){
+            else if(packageForm === "coverLetterReviewForm"){
               this.setState({ showCoverLetterReviewForm: true });
             }
-            else if(this.state.package === "graduateSchoolEssayRedraftForm"){
+            else if(packageForm === "graduateSchoolEssayRedraftForm"){
               this.setState({ showGraduateSchoolEssayRedraftForm: true });
             }
-             else if(this.state.package === "graduateSchoolStatementReviewForm"){
+             else if(packageForm === "graduateSchoolStatementReviewForm"){
               this.setState({ showGraduateSchoolStatementReviewForm: true });
             }else{
               this.setState({ showResumeReviewForm: true });
