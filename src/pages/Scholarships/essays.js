@@ -68,7 +68,7 @@ class Scholarship extends React.Component {
             verticalAlign: 'middle',
             textAlign: 'center',
             outline: 'none',
-            cursor: 'pointer'
+            cursor: this.state.reviewTab ? "default" : "pointer",
           }}> <h4 css={{marginBottom: '0px', color: this.state.reviewTab ? 'white' : '#19a99d'}}> Essay Review</h4> </button>
         </div>
         <div onClick={this.toggleTabs("redraft")} css={{
@@ -85,7 +85,7 @@ class Scholarship extends React.Component {
             border: 'none',
             outline: 'none',
             verticalAlign: 'middle',
-            cursor: 'pointer'
+           cursor: this.state.redraftTab ? "default" : "pointer",
           }}> <h4 css={{marginBottom: '0px', color: this.state.redraftTab ? 'white' : '#19a99d'}}> Essay Redraft </h4> </button>
         </div>
         </div>

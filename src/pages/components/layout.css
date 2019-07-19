@@ -777,6 +777,7 @@ pre tt:after {
 .cart-body,
 .cart-footer {
     padding: 20px;
+    font-family: "Poppins", sans-serif;
 }
 
 .cart-header-wrapper {

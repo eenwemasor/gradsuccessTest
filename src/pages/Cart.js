@@ -5,12 +5,31 @@ import ItemInCart from "./components/itemInCart"
 
 class Contact extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.state  = {
+      cartNotEmpty:true
+    }
+  }
+
+  componentDidMount(){
+    if(localStorage.getItem("ItemsInCart") === []){
+      this.setState({
+        cartNotEmpty:false
+      })
+    }else if(localStorage.getItem("ItemsInCart") === null){
+       this.setState({
+        cartNotEmpty:false
+      })
+    }else if(localStorage.getItem("ItemsInCart") === ""){
+      this.setState({
+        cartNotEmpty:false
+      })
+    }
   }
   render() {
-    return (
+    if(this.state.cartNotEmpty){
+          return (
       <Layout>
-
           <div
           css={{
             background: "white",
@@ -18,9 +37,31 @@ class Contact extends React.Component {
           }}
         >
           <ItemInCart />
+
         </div>
       </Layout>
     )
+    }else{
+      return(
+        <Layout>
+          <div
+          css={{
+            background: "white",
+            padding: "3em 1em",
+          }}
+        >
+          <div css={{
+            textAlign:"center"
+          }}>
+            <p>No item in cart</p>
+          </div>
+
+        </div>
+      </Layout>
+        
+       )
+    }
+
   }
 }
 

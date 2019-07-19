@@ -108,7 +108,11 @@ export default class itemInCart extends Component {
             randomstring += chars.substring(rnum, rnum + 1);
         }
 
+        if(itemInCart.length > 0){
         var form = itemInCart[0].form;
+        }else{
+          var form = "nil"
+        }
         localStorage.setItem("form_id", randomstring);
         localStorage.setItem("package", form);
   }
@@ -128,74 +132,81 @@ export default class itemInCart extends Component {
   render() {
     return (
       <div>
-       {this.state.ItemInCart === null ? <div className = "emptyCart">Nothing in Cart</div>:
-        <div className="cart-container">
-          {this.state.cartItem >= 3 && (
-            <img className="discounted" src={discouted} alt="Promo Discount" />
-          )}
-          <div className="cart-container-inner">
-            <h1>Cart</h1>
-            <div className="cart-header-wrapper">
-              <div className="cart-header cart-layout">
-                <div>S/N</div>
-                <div>Item Description</div>
-                <div>Price (N) </div>
-                <div />
+       {this.state.Items.length === 0 ? 
+         <div className = "emptyCart">
+           <p css={{
+              textAlign:"center"
+            }}>Nothing in Cart
+            </p>
+          </div>
+          :
+          <div className="cart-container">
+            {this.state.cartItem >= 3 && (
+              <img className="discounted" src={discouted} alt="Promo Discount" />
+            )}
+            <div className="cart-container-inner">
+              <h1>Cart</h1>
+              <div className="cart-header-wrapper">
+                <div className="cart-header cart-layout">
+                  <div>S/N</div>
+                  <div>Item Description</div>
+                  <div>Price (N) </div>
+                  <div />
+                </div>
+              </div>
+              {this.state.Items.map((item, index) => (
+                <SingleCartItem
+                  key={index}
+                  index={index}
+                  price={item.Price}
+                  desc={item.IitemDescription}
+                  delFunc={this.DeleteItem}
+                />
+              ))}
+
+              <div className="cart-footer-wrapper">
+                <div className="cart-footer cart-layout">
+                  <div />
+                  <div>Total</div>
+
+                  {this.state.cartItem >= 3 && (
+                    <div className  = "priceContainer">
+                      <span className="strikedPrice">
+                        N
+                        {this.state.totalAmount
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                      </span>
+                      <span className  = "disPrice">
+                        N
+                        {this.state.discountedAmount
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                      </span>
+                    </div>
+                  )}
+
+                  {this.state.cartItem < 3 && (
+                    <div>
+                      <span>
+                        N
+                        {this.state.totalAmount
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                      </span>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-            {this.state.Items.map((item, index) => (
-              <SingleCartItem
-                key={index}
-                index={index}
-                price={item.Price}
-                desc={item.IitemDescription}
-                delFunc={this.DeleteItem}
-              />
-            ))}
-
-            <div className="cart-footer-wrapper">
-              <div className="cart-footer cart-layout">
-                <div />
-                <div>Total</div>
-
-                {this.state.cartItem >= 3 && (
-                  <div className  = "priceContainer">
-                    <span className="strikedPrice">
-                      N
-                      {this.state.totalAmount
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                    </span>
-                    <span className  = "disPrice">
-                      N
-                      {this.state.discountedAmount
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                    </span>
-                  </div>
-                )}
-
-                {this.state.cartItem < 3 && (
-                  <div>
-                    <span>
-                      N
-                      {this.state.totalAmount
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                    </span>
-                  </div>
-                )}
-              </div>
+            <div className="btn-wrap">
+              <Link to="/Checkout">
+                <button className="checkout-button">Checkout</button>
+              </Link>
             </div>
           </div>
-          <div className="btn-wrap">
-            <Link to="/Checkout">
-              <button className="checkout-button">Checkout</button>
-            </Link>
-          </div>
+        }
         </div>
-      }
-      </div>
     )
   }
 }

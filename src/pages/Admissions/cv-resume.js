@@ -72,7 +72,7 @@ class CVresume extends React.Component {
                 verticalAlign: "middle",
                 textAlign: "center",
                 outline: "none",
-                cursor: "pointer",
+                cursor: this.state.reviewTab ? "default" : "pointer",
               }}
             >
               {" "}
@@ -105,7 +105,7 @@ class CVresume extends React.Component {
                 border: "none",
                 outline: "none",
                 verticalAlign: "middle",
-                cursor: "pointer",
+                cursor: this.state.redraftTab ? "default" : "pointer",
               }}
             >
               {" "}
@@ -113,6 +113,7 @@ class CVresume extends React.Component {
                 css={{
                   marginBottom: "0px",
                   color: this.state.redraftTab ? "white" : "#19a99d",
+
                 }}
               >
                 {" "}

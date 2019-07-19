@@ -15,22 +15,7 @@ const mq = breakpoints.map(
   )
 
 
-const getStoreCount = function(){
 
-  if (typeof window !== `undefined`) {
-    var list = [];
-
-    if(localStorage.getItem('ItemsInCart') !== null){
-      list = JSON.parse(localStorage.getItem('ItemsInCart'));
-      if(list.length == 0){
-        return 0
-      }else{
-        return list.length
-      }
-    }
-
-}
-}
 const customStyles = {
   content : {
     top                   : '0%',
@@ -47,11 +32,14 @@ class Header extends React.Component {
     super(props)
   this.state = {
     toggle: false,
-    showModal:false
+    showModal:false,
+    cartCounter:0
+
   }
   this.toggleIcon = this.toggleIcon.bind(this)
   this.handleOpenModal = this.handleOpenModal.bind(this)
   this.handleCloseModal = this.handleCloseModal.bind(this)
+  this.getStoreCount = this.getStoreCount.bind(this)
   }
 
   toggleIcon() {
@@ -68,7 +56,33 @@ class Header extends React.Component {
 
   handleCloseModal () {
           this.setState({ showModal: false });
+  }
+
+  componentDidMount(){
+    this.getStoreCount();
+  }
+
+
+  getStoreCount(){
+    if (typeof window !== `undefined`) {
+
+      if(localStorage.getItem('ItemsInCart') !== null){
+
+        var list = JSON.parse(localStorage.getItem('ItemsInCart'));
+
+        if(list.length == 0){
+          this.setState({
+            cartCounter:""
+          })
+        }else{
+            this.setState({
+              cartCounter:list.length
+            })
+        }
       }
+
+  }
+}
       
   render(){
     // let name = this.state.isToggle ? "mkRed" : null;
@@ -136,8 +150,8 @@ class Header extends React.Component {
 
         <Link to="Cart" activeStyle={{color: 'white'}} className="pad">
         <div style={cart}>
-          <span  id = "counter" style={cart_indicator}>{getStoreCount()}</span>
-              <Cart />
+          <span  id = "counter" style={cart_indicator}>{this.state.cartCounter}</span>
+            <Cart />
         </div>
         </Link>
           

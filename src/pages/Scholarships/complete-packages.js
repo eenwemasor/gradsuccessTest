@@ -71,7 +71,7 @@ class CompletePackage extends React.Component {
                 verticalAlign: "middle",
                 textAlign: "center",
                 outline: "none",
-                cursor: "pointer",
+                cursor: this.state.reviewTab ? "default" : "pointer",
               }}
             >
               {" "}
