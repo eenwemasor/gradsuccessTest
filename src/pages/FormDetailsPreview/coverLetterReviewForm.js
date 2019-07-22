@@ -1,7 +1,7 @@
 import { React, Component } from "react"
 import { Query } from "react-apollo";
-import loader from "../../../images/loader.gif"
-import {COVER_LETTER_REVIEW_FORM} from "../../graphql/queries"
+import loader from "../../images/loader.gif"
+import {COVER_LETTER_REVIEW_FORM} from "../graphql/queries"
 
 
 

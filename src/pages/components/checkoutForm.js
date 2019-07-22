@@ -13,19 +13,13 @@ export default class checkoutForm extends Component {
             key: "pk_test_33a9728f0c72c40804064e98287220d2353d2083", //PAYSTACK PUBLIC KEY
             amount: 100000, //equals NGN100,
             success: false,
-            lastName: "",
-            firstName: '',
             password: "",
             email: '', // customer email
+            first_name: "",
+            last_name: '',
             phone: '',
-            VERIFY_INPUTS: {
-                v_first_name: true,
-                v_last_name: true,
-                v_phone: true,
-                v_email: true,
-            },
+            account_type:'Client',
             submitForm: true,
-
         }
         this.handleForm = this.handleForm.bind(this)
         this.verifyFormSubmit = this.verifyFormSubmit.bind(this)
@@ -57,133 +51,11 @@ export default class checkoutForm extends Component {
     }
 
     handleForm(e) {
-        if (e.target.value === "") {
-            let element = e.target.id;
-
-            switch (element) {
-                case "v_first_name":
-                    {
-                        this.setState({
-                            VERIFY_INPUTS: {
-                                v_first_name: false,
-                                v_last_name: true,
-                                v_phone: true,
-                                v_email: true,
-                            }
-                        })
-                        this.verifyFormSubmit()
-                        break
-                    }
-                case "v_last_name":
-                    {
-                        this.setState({
-                            VERIFY_INPUTS: {
-                                v_first_name: true,
-                                v_last_name: false,
-                                v_phone: true,
-                                v_email: true,
-                            }
-                        })
-                        this.verifyFormSubmit()
-                        break
-                    }
-                case "v_phone":
-                    {
-                        this.setState({
-                            VERIFY_INPUTS: {
-                                v_first_name: true,
-                                v_last_name: true,
-                                v_phone: false,
-                                v_email: true,
-                            }
-                        })
-                        this.verifyFormSubmit()
-                        break
-                    }
-                case "v_email":
-                    {
-                        this.setState({
-                            VERIFY_INPUTS: {
-                                v_first_name: true,
-                                v_last_name: true,
-                                v_phone: true,
-                                v_email: false,
-                            }
-                        })
-                        this.verifyFormSubmit()
-                        break
-                    }
-                default:
-                    return false
-
-            }
-
-        } else {
-            let element = e.target.id;
-            switch (element) {
-                case "v_first_name":
-                    {
-                        this.setState({
-                            VERIFY_INPUTS: {
-                                v_first_name: true,
-                                v_last_name: true,
-                                v_phone: true,
-                                v_email: true,
-                            },
-                            firstName: e.target.value
-                        })
-                        this.verifyFormSubmit()
-                        break
-                    }
-                case "v_last_name":
-                    {
-                        this.setState({
-                            VERIFY_INPUTS: {
-                                v_first_name: true,
-                                v_last_name: true,
-                                v_phone: true,
-                                v_email: true,
-                            },
-                            lastName: e.target.value
-                        })
-                        this.verifyFormSubmit()
-                        break
-                    }
-                case "v_phone":
-                    {
-                        this.setState({
-                            VERIFY_INPUTS: {
-                                v_first_name: true,
-                                v_last_name: true,
-                                v_phone: true,
-                                v_email: true,
-                            },
-                            phone: e.target.value
-                        })
-                        this.verifyFormSubmit()
-                        break
-                    }
-                case "v_email":
-                    {
-                        this.setState({
-                            VERIFY_INPUTS: {
-                                v_first_name: true,
-                                v_last_name: true,
-                                v_phone: true,
-                                v_email: true
-                            },
-                            email: e.target.value
-                        })
-                        this.verifyFormSubmit()
-                        break
-                    }
-                default:
-                    return false
-
-            }
-
-        }
-
+        const {name, value} = e.target
+        this.setState(prevState =>({
+            ...prevState.data,
+            [name]:value
+        }))
     }
 
     paystackPaymentSuccess(response){
@@ -303,10 +175,14 @@ export default class checkoutForm extends Component {
 							e.preventDefault();
 							createClientAccount({
 							variables: {
+                                first_name:this.state.first_name,
+                                last_name:this.state.last_name,
+                                phone:this.state.phone,
     							form_id:localStorage.getItem('form_id') || "no form",
     							package:localStorage.getItem('package') || "no form",
     							email:this.state.email,
-    							password:this.state.password || "nothing"
+                                password:this.state.password || "nothing",
+    							account_type:this.state.account_type
 							}
 							});
 							}}
@@ -315,22 +191,18 @@ export default class checkoutForm extends Component {
 							
 							<h3>Personal Details</h3>
 							<div className="row">
+								    <div className="col">
+									    <input type="text" required placeholder="First name"  onChange = {this.handleForm} id = "first_name" name = "first_name"/>
+                                    </div>
 								<div className="col">
-									<input type="text" required className={this.state.VERIFY_INPUTS.v_first_name ? "" : "required"} placeholder="First name"  onChange = {this.handleForm} id = "v_first_name"/>
-									<span className={this.state.VERIFY_INPUTS.v_first_name ? "show" : ""}>This field is required</span>
-								</div>
-								<div className="col">
-									<input type="text" required className={this.state.VERIFY_INPUTS.v_last_name ? "" : "required"} placeholder="Last name"  onChange = {this.handleForm}  id = "v_last_name"/>
-									<span className={this.state.VERIFY_INPUTS.v_last_name ? "show" : ""}>This field is required</span>
+									<input type="text" required  placeholder="Last name"  onChange = {this.handleForm}  id = "last_name" name = "last_name"/>
 								</div>
 							</div>
 							<div className="row-full">
-								<input type="text" required className={this.state.VERIFY_INPUTS.v_phone ? "" : "required"} placeholder="Phone" onChange = {this.handleForm}  id = "v_phone" />
-								<span className={this.state.VERIFY_INPUTS.v_phone ? "show" : ""}>This field is required</span>
+								<input type="text" required  placeholder="Phone" onChange = {this.handleForm}  id = "phone"  name = "phone"/>
 							</div>
 							<div className="row-full">
-								<input type="email" required className={this.state.VERIFY_INPUTS.v_email ? "" : "required"} placeholder="Email Address" onChange = {this.handleForm}   id = "v_email"/>
-								<span className={this.state.VERIFY_INPUTS.v_email ? "show" : ""}>This field is required</span>
+								<input type="email" required  placeholder="Email Address" onChange = {this.handleForm}   id = "email" name = "email"/>
 							</div>
 							<br />
 							<input type = "submit" className = "submit-details" value = "Proceed to payment"/>

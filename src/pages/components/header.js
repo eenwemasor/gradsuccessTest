@@ -33,9 +33,9 @@ class Header extends React.Component {
   this.state = {
     toggle: false,
     showModal:false,
-    cartCounter:0
-
+    cartCounter:""
   }
+
   this.toggleIcon = this.toggleIcon.bind(this)
   this.handleOpenModal = this.handleOpenModal.bind(this)
   this.handleCloseModal = this.handleCloseModal.bind(this)
@@ -70,7 +70,7 @@ class Header extends React.Component {
 
         var list = JSON.parse(localStorage.getItem('ItemsInCart'));
 
-        if(list.length == 0){
+        if(list.length === 0 || list.length === null){
           this.setState({
             cartCounter:""
           })
@@ -147,6 +147,7 @@ class Header extends React.Component {
         <Link to="about-us" activeStyle={{color: 'white'}} className="pad">About Us</Link>
         <Link to="blog" activeStyle={{color: 'white'}} className="pad">Blog</Link>
         <Link to="Contact" activeStyle={{color: 'white'}} className="pad">Contact</Link>
+        <Link to="/Apply-as-an-Expert" activeStyle={{color: 'white'}} className="pad">Apply as Expert</Link>
 
         <Link to="Cart" activeStyle={{color: 'white'}} className="pad">
         <div style={cart}>

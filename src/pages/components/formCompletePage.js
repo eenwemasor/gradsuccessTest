@@ -61,8 +61,6 @@ export default class formCompletePage extends React.Component {
             		</div>
             	</div>
             </div>
-
-
              <div>
                 <Modal 
                    isOpen={this.state.showModal}

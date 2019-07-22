@@ -41,15 +41,23 @@ export const FORGOT_PASSWORD = gql`
 
 export const CREATE_CLIENT_ACCOUNT = gql`
     mutation CreateResumeReviewForm(
+    $first_name:String!,
+    $last_name:String!,
+    $phone:String!,
     $form_id: String!,
     $package: String!,
 	$email:String!,
-	$password:String! ){
+	$password:String!
+	$account_type:String! ){
 		 createClientAcccount(
+		    first_name:$first_name
+		    last_name:$last_name
+		    phone:$phone
 		    form_id:$form_id
 		    package:$package
 		    email:$email
 		    password:$password
+		    account_type:$account_type
 				  ){
 				    form_id
 		}
@@ -60,17 +68,25 @@ export const CREATE_COVER_LETTTER_REVIEW = gql`
     mutation CreateCoverLetterReviewForm(
     $name: String!,
 	$industry_applied_for:String!,
-	$summary_of_interest:String! ,
+	$summary_of_interest:String!,
+	$curriculum_vitae: String!,
 	$package:String
 	$has_expert:Boolean!
-	$form_id:String){
+	$form_id:String
+	$status:String
+	$completed:Boolean!
+	){
 		createCoverLetterReviewForm(
 			name:$name, 
 			industry_applied_for:$industry_applied_for, 
 			summary_of_interest:$summary_of_interest, 
+			curriculum_vitae: $curriculum_vitae,
 			package:$package
 			has_expert:$has_expert
-			form_id:$form_id){
+			form_id:$form_id
+			status:$status
+			completed:$completed
+			){
 			name
 		}
 	}
@@ -80,17 +96,25 @@ export const CREATE_RESUME_REVIEW_FORM = gql`
     mutation CreateResumeReviewForm(
     $name: String!,
 	$industry_applied_for:String!,
-	$summary_of_interest:String! ,
+	$summary_of_interest:String!,
+	$curriculum_vitae: String!,
 	$package:String,
 	$has_expert:Boolean!
-	$form_id:String){
+	$form_id:String!
+	$status:String
+	$completed:Boolean
+	){
 		createResumeReviewForm(
 			name:$name, 
 			industry_applied_for:$industry_applied_for, 
 			summary_of_interest:$summary_of_interest, 
+			curriculum_vitae:$curriculum_vitae, 
 			package:$package,
 			has_expert:$has_expert
-			form_id:$form_id){
+			form_id:$form_id
+			status:$status
+			completed:$completed
+			){
 			name
 		}
 	}
@@ -101,18 +125,24 @@ export const CREATE_GRADUATE_SCHOOL_STATEMENT_REVIEW = gql`
     mutation GraduateSchoolStatementReviewForm(
     $name: String!,
 	$university_and_course_applied_for:String!,
-	$summary_of_interest:String! ,
+	$summary_of_interest:String!,
+	$curriculum_vitae: String!,
 	$package:String
 	$has_expert:Boolean!
 	$form_id:String
+	$status:String
+	$completed:Boolean!
 	){
 		createGraduateSchoolStatementReviewForm(
     name: $name, 
     university_and_course_applied_for: $university_and_course_applied_for, 
-    summary_of_interest: $summary_of_interest, 
+    summary_of_interest: $summary_of_interest,
+    curriculum_vitae:$curriculum_vitae, 
     package: $package
     has_expert:$has_expert
     form_id:$form_id
+    status:$status
+    completed:$completed
 	    ) {
 		   name
 		}
@@ -161,6 +191,8 @@ export const CREATE_COVER_LETTER_REDRAFT = gql`
 		$package: String!
 		$has_expert:Boolean!
 		$form_id:String
+		$status:String
+		$completed:Boolean!
 	){
 		createCoverLetterRedraft(
 	    name: $name,
@@ -203,6 +235,8 @@ export const CREATE_COVER_LETTER_REDRAFT = gql`
 		package: $package
 		has_expert:$has_expert
 		form_id:$form_id
+		status:$status
+		completed:$completed
 		) {
 		   name
 		  }
@@ -252,6 +286,8 @@ export const CREATE_GRADUATE_SCHOOL_ESSAY_REDRAFT = gql`
 	$package: String!,
 	$has_expert:Boolean!
 	$form_id:String!
+	$status:String
+	$completed:Boolean!
 	){
 		createGraduateSchoolEssayRedraftForm(
 		    name:$name,
@@ -293,7 +329,10 @@ export const CREATE_GRADUATE_SCHOOL_ESSAY_REDRAFT = gql`
 			curriculum_vitae:$curriculum_vitae,
 			package:$package
 			has_expert:$has_expert
-			form_id:$form_id) {
+			form_id:$form_id
+			status:$status
+			completed:$completed
+			) {
    name
   }
 	}

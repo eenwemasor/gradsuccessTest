@@ -1,29 +1,20 @@
 import { React, Component } from "react"
 import Footer from '../components/Footer'
 import RegisteredAccount from './registeredExperts'
-import { Query } from "react-apollo";
-import { LOGGED_IN_USER } from "../graphql/queries"
 import loader from "../../images/loader.gif"
 
-import ResumeReviewForm from "./TableQueryData/resumeReviewForm"
-import GraduateSchoolRedraftForm from "./TableQueryData/graduateSchoolEssayRedraftForm"
-import GraduateSchoolReviewForm from "./TableQueryData/graduateSchoolStatementReviewForm"
-import CoverLetterReviewForm from "./TableQueryData/coverLetterReviewForm"
-import CoverLetterRedraftForm from "./TableQueryData/coverLetterRedraft"
+import AllApplications from "./TableQueryData/allApplications"
 import LogoutForm from "../components/Forms/logoutForm"
 
-import MainLayout from "../components/ClientAccountComponents/mainLayout"
+import MainLayout from "../components/ExpertAccountComponents/mainLayout"
 
 class IndexPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            allRequest:true,
-            resumeReview:false,
-            graduateSchoolRedraft:false,
-            graduateSchoolReview:false,
-            coverLetterReview:false,
-            coverLetterRedraft:false,
+            AllApplicationsComponent:true,
+            ExpertsComponent:false,
+            
         }
          this.handleDisplayComponent = this.handleDisplayComponent.bind(this);
     }
@@ -38,16 +29,13 @@ class IndexPage extends Component {
             window.location = '/'
         }
     }
+
     handleDisplayComponent(event){
         let Component =  event.target.id;
 
         this.setState({
-            allRequest:false,
-            resumeReview:false,
-            graduateSchoolRedraft:false,
-            graduateSchoolReview:false,
-            coverLetterReview:false,
-            coverLetterRedraft:false,
+            AllApplicationsComponent:false,
+            ExpertsComponent:false,
         })
 
         this.setState({
@@ -61,24 +49,16 @@ class IndexPage extends Component {
                 <div>
                     <MainLayout />
                     <div className = "main-content">
-
                             <div className = "client_main_area">
                                 <div className = "client_main_area_menu">
-                                    <button id = "allRequest" onClick = {this.handleDisplayComponent}>All Request</button>
-                                    <button id = "resumeReview" onClick = {this.handleDisplayComponent}>Resume Review</button>
-                                    <button id = "graduateSchoolRedraft" onClick = {this.handleDisplayComponent}>Graduate School Redraft</button>
-                                    <button id = "graduateSchoolReview" onClick = {this.handleDisplayComponent}>Graduate School Review</button>
-                                    <button id = "coverLetterReview" onClick = {this.handleDisplayComponent}>Cover Letter Review</button>
-                                    <button id = "coverLetterRedraft" onClick = {this.handleDisplayComponent}>Cover Letter Redraft</button>
+                                    <button id = "AllApplicationsComponent" onClick = {this.handleDisplayComponent}>All Request</button>
+                                    <button id = "ExpertsComponent" onClick = {this.handleDisplayComponent}>Experts</button>
                                     <LogoutForm />
                                 </div>
                                 <div>
                                     <div className="client_main_area_content_area">
-                                        {this.state.resumeReview && <ResumeReviewForm />}
-                                        {this.state.graduateSchoolRedraft && <GraduateSchoolRedraftForm />}
-                                        {this.state.graduateSchoolReview && <GraduateSchoolReviewForm />}
-                                        {this.state.coverLetterReview && <CoverLetterReviewForm />}
-                                        {this.state.coverLetterRedraft && <CoverLetterRedraftForm />}
+                                        {this.state.AllApplicationsComponent && <AllApplications />}
+                                        {this.state.ExpertsComponent && <RegisteredAccount />}
                                     </div>
                                 </div>
                             </div>

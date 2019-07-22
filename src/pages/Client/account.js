@@ -1,10 +1,10 @@
 import { React, Component } from "react"
 import { Query } from "react-apollo";
-import CoverLetterRedraft from "./TableQueryData/coverLetterRedraft"
-import CoverLetterReviewForm from "./TableQueryData/coverLetterReviewForm"
-import GraduateSchoolEssayRedraftForm from "./TableQueryData/graduateSchoolEssayRedraftForm"
-import GraduateSchoolStatementReviewForm from "./TableQueryData/graduateSchoolStatementReviewForm"
-import ResumeReviewForm from "./TableQueryData/resumeReviewForm"
+import CoverLetterRedraft from "../FormDetailsPreview/coverLetterRedraft"
+import CoverLetterReviewForm from "../FormDetailsPreview/coverLetterReviewForm"
+import GraduateSchoolEssayRedraftForm from "../FormDetailsPreview/graduateSchoolEssayRedraftForm"
+import GraduateSchoolStatementReviewForm from "../FormDetailsPreview/graduateSchoolStatementReviewForm"
+import ResumeReviewForm from "../FormDetailsPreview/resumeReviewForm"
 
 
 

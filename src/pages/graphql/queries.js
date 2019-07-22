@@ -18,9 +18,13 @@ export default class queries extends React.Component {
 export const LOGGED_IN_USER = gql`
   {
     me{
+      first_name
+      last_name
+      phone
 	    form_id
 	    package
 	    email
+      account_type
   	}
   }
 `;
@@ -31,9 +35,13 @@ export const COVER_LETTER_REVIEW_FORM = gql`
                   name
                   industry_applied_for
                   summary_of_interest
+                  curriculum_vitae 
                   package
                   has_expert
                   form_id
+                  status
+                  completed
+                  created_at
                 }
               }
             `;
@@ -43,10 +51,14 @@ export const RESUME_REVIEW_FORM = gql`
                 getResumeReviewForm(form_id: $form_id) {
                   name
                   industry_applied_for  
-                  summary_of_interest 
+                  summary_of_interest
+                  curriculum_vitae 
                   package 
                   has_expert  
-                  form_id 
+                  form_id
+                  status
+                  completed
+                  created_at
                 }
               }
             `;
@@ -57,9 +69,13 @@ export const GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM = gql`
         name
         university_and_course_applied_for
         summary_of_interest
+        curriculum_vitae 
         package
         has_expert
         form_id
+        status
+        completed
+        created_at
     }
   }
 `;
@@ -106,7 +122,10 @@ export const GRADUATE_SCHOOL_ESSAY_REDRAFT_FORM = gql`
                     curriculum_vitae 
                     package
                     has_expert 
-                    form_id 
+                    form_id
+                    status
+                    completed 
+                    created_at
                 }
               }
             `;
@@ -153,7 +172,10 @@ export const COVER_LETTER_REDRAFT = gql`
         curriculum_vitae 
         package 
         has_expert 
-        form_id 
+        form_id
+        status
+        completed 
+        created_at
     }
   }
 `;
@@ -167,9 +189,13 @@ export const GET_ALL_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORMS = gql`
       name 
       university_and_course_applied_for
       summary_of_interest
+      curriculum_vitae 
       created_at
       package
       has_expert
+      form_id
+      status
+      completed
       created_at
       
     }
@@ -184,8 +210,12 @@ export const GET_ALL_COVER_LETTER_REVIEW_FORMS = gql`
       name 
       industry_applied_for
       summary_of_interest
+      curriculum_vitae 
       package
       has_expert
+      form_id
+      status
+      completed
       created_at
     }
   }
@@ -197,8 +227,12 @@ export const GET_ALL_RESUMME_REVIEW_FORMS = gql`
       name
       industry_applied_for
       summary_of_interest
+      curriculum_vitae 
       package
       has_expert
+      form_id
+      status
+      completed
       created_at
     }
   }
@@ -246,6 +280,9 @@ export const GET_ALL_COVER_LETTER_REDRAFT_FORMS = gql`
       curriculum_vitae
       package
       has_expert
+      form_id
+      status
+      completed
       created_at
     }
   }
@@ -293,8 +330,25 @@ export const GET_ALL_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORMS = gql`
       curriculum_vitae
       package
       has_expert
+      form_id
+      status
+      completed
       created_at
     }
   }
 
+`;
+
+export const GET_ALL_EXPERTS = gql`
+  query GetExperts($account_type: String!) {
+    getExperts(account_type: $account_type) {
+      first_name
+      last_name
+      phone
+      form_id
+      package
+      email
+      account_type
+    }
+  }
 `;

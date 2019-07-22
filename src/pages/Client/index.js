@@ -10,8 +10,6 @@ import LoginForm from "../components/Forms/loginForm"
 import LogoutForm from "../components/Forms/logoutForm"
 
 import LeaveAMessageForm from "../components/Forms/leaveAMessageForm"
-import ComplainForm from "../components/Forms/complainForm"
-import ChangeCV from "../components/Forms/changeCV"
 
 import account_info from "../../images/icons/account_info.png"
 import leave_a_message from "../../images/icons/leave_a_message.png"
@@ -94,10 +92,8 @@ class IndexPage extends Component {
                         <div className = "main-content">
                             <div className = "client_main_area">
                                 <div className = "client_main_area_menu">
-                                    <button id = "accountInfo" onClick = {this.handleDisplayComponent}>Account Info</button>
+                                    <button id = "accountInfo" onClick = {this.handleDisplayComponent}>Uploaded Info</button>
                                     <button id = "leaveAMessage" onClick = {this.handleDisplayComponent}>Leave a Message</button>
-                                    <button id = "leaveAComplain" onClick = {this.handleDisplayComponent}>Have a Complain ?</button>
-                                    <button id = "changeCV" onClick = {this.handleDisplayComponent}> Change CV</button>
                                     <LogoutForm />
                                 </div>
 
@@ -114,8 +110,6 @@ class IndexPage extends Component {
                                     <div className="client_main_area_content_area">
                                     {this.state.accountInfo && <AccountInfo table = {data.me.package} userID = {data.me.form_id}/>}
                                     {this.state.leaveAMessage && <LeaveAMessageForm />}
-                                    {this.state.leaveAComplain && <ComplainForm />}
-                                    {this.state.changeCV && <ChangeCV />}
                                     </div>
                                 </div>
                             </div>

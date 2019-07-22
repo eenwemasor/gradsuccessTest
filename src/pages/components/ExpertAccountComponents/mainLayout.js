@@ -76,7 +76,7 @@ export default class mainLayout extends Component {
             <div className = "logo-image"><img  src={discouted} alt="Logo" /></div>
             <div className = "d-menu-container">
               <ul>
-                <li> <Link to="Client">Home</Link></li>
+                <li> <Link to="../">Home</Link></li>
                 <li><Link to="Client/history">History</Link></li>
                 <li><Link to="Client/message">Messages</Link></li>
                 <li><Link to="Client/profile">Profile</Link></li>

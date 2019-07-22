@@ -1,14 +1,14 @@
 import { React, Component } from "react"
 import { Query } from "react-apollo";
-import loader from "../../../images/loader.gif"
-import {GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM} from "../../graphql/queries"
+import loader from "../../images/loader.gif"
+import {RESUME_REVIEW_FORM} from "../graphql/queries"
 
 
 
 
 
 
-class GraduateSchoolEssayRedraftForm extends Component {
+class ResumeReviewForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -16,12 +16,15 @@ class GraduateSchoolEssayRedraftForm extends Component {
             form_id:props.userID || "empty"
         }
 }
+
+
 render() {
     return(  
         <div>
         <Query 
-        query={GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM}
-        variables={{form_id:this.state.form_id }}
+        query={RESUME_REVIEW_FORM}
+        variables={{ 
+            form_id:this.state.form_id }}
         >
             {({ loading, error, data }) => {
               if (loading) return (
@@ -40,17 +43,17 @@ render() {
                         <h3 className = "form-header" >Form Details </h3>
                         <div className="form_preview_col_1">
                             <div className="form_preview_fields">
-                                <small>Name:</small>
-                                <p>{data.getGraduateSchoolStatementReviewForm.name}</p>
+                                <small>Name</small>
+                                <p>{data.getResumeReviewForm.name}</p>
                             </div>
                             <div className="form_preview_fields"> 
-                                <small>University and Ciurse Applied for:</small>
-                                <p>{data.getGraduateSchoolStatementReviewForm.university_and_course_applied_for}</p>
+                                <small>Industry and Role Title Applied for</small>
+                                <p>{data.getResumeReviewForm.industry_applied_for}</p>
                             </div>
 
                              <div className="form_preview_fields"> 
-                                <small>Summary of Interest:</small>
-                                <p>{data.getGraduateSchoolStatementReviewForm.summary_of_interest}</p>
+                                <small>Summary of Interest</small>
+                                <p>{data.getResumeReviewForm.summary_of_interest}</p>
                             </div>
                             <div className = "spacing">
                                 
@@ -58,7 +61,7 @@ render() {
                         </div>
                         
                     </div>
-                </div>
+                    </div>
               );
             }}
         </Query>
@@ -66,4 +69,4 @@ render() {
     )
 }
 }
-export default GraduateSchoolEssayRedraftForm
+export default ResumeReviewForm

@@ -17,9 +17,12 @@ export default class resumeReviewForm extends React.Component {
                 name: "empty",
                 industry_applied_for: "empty",
                 summary_of_interest: "empty",
+                curriculum_vitae: "empty",
                 package: this.props.package,
                 has_expert: false,
-                form_id: "empty"
+                form_id: "empty",
+                status:"Vacant",
+                completed:false
             },
             form_submit_success:false,
         }
@@ -85,7 +88,15 @@ export default class resumeReviewForm extends React.Component {
         let CVName = this.state.data.name.replace(/\s+/g, '_')
         let timeSubmitted = new Date().getTime()
         var file = document.getElementById('file').files[0];
-        var storageRef = firebase.storage().ref('CurriculumVitae/' + CVName + "_" + timeSubmitted + "_" + file.name)
+        let fileRef = 'CurriculumVitae/' + CVName + "_" + timeSubmitted + "_" + file.name
+        this.setState(prevState => ({
+            data: {
+                ...prevState.data,
+                "curriculum_vitae": fileRef
+            }
+        }))
+        console.log(this.state.data)
+        var storageRef = firebase.storage().ref(fileRef)
         var task = storageRef.put(file)
         task.on('state_changed',
             function progress(snapshot) {
@@ -105,6 +116,7 @@ export default class resumeReviewForm extends React.Component {
                 document.getElementById('submitBtn').style.opacity = '1'
             })
     }
+
     render() {
         
         if(!this.state.form_submit_success){
@@ -121,7 +133,7 @@ export default class resumeReviewForm extends React.Component {
                 {(createCoverLetterReviewData, { data,loading, error}) => (
                 <div className = "loader-wrapper">
                   <div id="submittedSucces" className="SuccessTagForm">
-                    Success! Your Details was submitted...
+                    Success! Your details was submitted...
                   </div>
                   <form
                     onSubmit={e => {
@@ -154,6 +166,25 @@ export default class resumeReviewForm extends React.Component {
                       </textarea>
                     </div>
                     <br />
+
+                    <input
+                      type="file"
+                      name="file"
+                      id="file"
+                      className = "file_upload"
+                      onChange={this.onChange}/>
+                      
+                      <div className = "progressBar">
+                        <label className = "uploading" id = "uploading">Uploading...</label>
+                        <label className = "complete" id = "complete">Complete!</label>
+                        <label className = "error" id = "error">Error!</label>
+                      <progress value = "0" max= "100" id = "uploader">0%</progress>
+                    </div>
+                    <div className = "file_upload_label">
+                      <label htmlFor="file" >Upload Curriculum Vitae</label>
+                    </div>
+                    <br />
+                    
                     <input type = "submit" className = "submit-details" value = "Submit" id = "submitBtn"/>
                     
                   </form>
