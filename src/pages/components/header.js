@@ -147,7 +147,6 @@ class Header extends React.Component {
         <Link to="about-us" activeStyle={{color: 'white'}} className="pad">About Us</Link>
         <Link to="blog" activeStyle={{color: 'white'}} className="pad">Blog</Link>
         <Link to="Contact" activeStyle={{color: 'white'}} className="pad">Contact</Link>
-        <Link to="/Apply-as-an-Expert" activeStyle={{color: 'white'}} className="pad">Apply as Expert</Link>
 
         <Link to="Cart" activeStyle={{color: 'white'}} className="pad">
         <div style={cart}>

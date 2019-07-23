@@ -125,7 +125,7 @@ export default class checkoutForm extends Component {
                 		<div className = "co-inner">
                 			<div>
                 				<ul className = "paymentDetails">
-                					<li><strong>Name:</strong>   <i>{this.state.lastName + " " + this.state.firstName}</i></li>
+                					<li><strong>Name:</strong>   <i>{this.state.first_name + " " + this.state.last_name}</i></li>
                 					<li><strong>Email Address:</strong>  <i>{this.state.email}</i></li>
                 					<li><strong>Phone Number: </strong>  <i>{this.state.phone}</i></li>
                 				</ul>
@@ -191,9 +191,9 @@ export default class checkoutForm extends Component {
 							
 							<h3>Personal Details</h3>
 							<div className="row">
-								    <div className="col">
-									    <input type="text" required placeholder="First name"  onChange = {this.handleForm} id = "first_name" name = "first_name"/>
-                                    </div>
+							    <div className="col">
+								    <input type="text" required placeholder="First name"  onChange = {this.handleForm} id = "first_name" name = "first_name"/>
+                                </div>
 								<div className="col">
 									<input type="text" required  placeholder="Last name"  onChange = {this.handleForm}  id = "last_name" name = "last_name"/>
 								</div>

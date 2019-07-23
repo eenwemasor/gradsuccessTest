@@ -33,7 +33,6 @@ render() {
               return (
                 <div className="form_preview">
                     <div className="form_preview_inner">
-                        <h3 className = "form-header" >Experts List</h3>
                         <div className="form_preview_col_1">
 
                             {data.getExperts === null ?
@@ -47,7 +46,6 @@ render() {
                                                     <h4>{Expert.first_name + " " + Expert.first_name}</h4>
                                                     <p>{Expert.phone}</p>
                                                     <p>{Expert.email}</p>
-                                                    
                                                 </div>
                                             </div>
                                         </div>

@@ -71,7 +71,7 @@ export const CREATE_COVER_LETTTER_REVIEW = gql`
 	$summary_of_interest:String!,
 	$curriculum_vitae: String!,
 	$package:String
-	$has_expert:Boolean!
+	$has_expert:String
 	$form_id:String
 	$status:String
 	$completed:Boolean!
@@ -99,7 +99,7 @@ export const CREATE_RESUME_REVIEW_FORM = gql`
 	$summary_of_interest:String!,
 	$curriculum_vitae: String!,
 	$package:String,
-	$has_expert:Boolean!
+	$has_expert:String
 	$form_id:String!
 	$status:String
 	$completed:Boolean
@@ -128,7 +128,7 @@ export const CREATE_GRADUATE_SCHOOL_STATEMENT_REVIEW = gql`
 	$summary_of_interest:String!,
 	$curriculum_vitae: String!,
 	$package:String
-	$has_expert:Boolean!
+	$has_expert:String
 	$form_id:String
 	$status:String
 	$completed:Boolean!
@@ -189,7 +189,7 @@ export const CREATE_COVER_LETTER_REDRAFT = gql`
 		$summary_of_interest: String!,
 		$curriculum_vitae: String!,
 		$package: String!
-		$has_expert:Boolean!
+		$has_expert:String
 		$form_id:String
 		$status:String
 		$completed:Boolean!
@@ -284,7 +284,7 @@ export const CREATE_GRADUATE_SCHOOL_ESSAY_REDRAFT = gql`
 	$referee: String!,
 	$curriculum_vitae: String,
 	$package: String!,
-	$has_expert:Boolean!
+	$has_expert:String
 	$form_id:String!
 	$status:String
 	$completed:Boolean!
@@ -337,6 +337,88 @@ export const CREATE_GRADUATE_SCHOOL_ESSAY_REDRAFT = gql`
   }
 	}
 
+`;
+
+export const UPDATE_RESUME_REVIEW_FORM = gql`
+    mutation UpdateResumeReviewForm(
+    $id: ID!,
+	$has_expert:String
+	$status:String
+	){
+		updateResumeReviewForm(
+			id:$id,
+			has_expert:$has_expert
+			status:$status
+			){
+			name
+    industry_applied_for
+		}
+	}
+`;
+
+export const UPDATE_COVER_LETTER_REVIEW_FORM = gql`
+    mutation UpdateCoverLetterReviewForm(
+    $id: ID!,
+	$has_expert:String
+	$status:String
+	){
+		updateCoverLetterReviewForm(
+			id:$id,
+			has_expert:$has_expert
+			status:$status
+			){
+			name
+    		industry_applied_for
+		}
+	}
+`;
+export const UPDATE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM = gql`
+    mutation UpdateGraduateSchoolStatementReviewForm(
+    $id: ID!,
+	$has_expert:String
+	$status:String
+	){
+		updateGraduateSchoolStatementReviewForm(
+			id:$id,
+			has_expert:$has_expert
+			status:$status
+			){
+			name
+    industry_applied_for
+		}
+	}
+`;
+export const UPDATE_COVER_LETTER_REDRAFT = gql`
+    mutation UpdateCoverLetterRedraft(
+    $id: ID!,
+	$has_expert:String
+	$status:String
+	){
+		updateCoverLetterRedraft(
+			id:$id,
+			has_expert:$has_expert
+			status:$status
+			){
+			name
+    industry_applied_for
+		}
+	}
+`;
+export const UPDATE_GRADUATE_SCHOOL_ESSAY_REDRAFT = gql`
+    mutation UpdateGraduateSchoolEssayRedraftForm(
+    $id: ID!,
+	$has_expert:String
+	$status:String
+	){
+		updateGraduateSchoolEssayRedraftForm(
+			id:$id,
+			has_expert:$has_expert
+			status:$status
+			){
+			name
+    industry_applied_for
+		}
+	}
 `;
 
 

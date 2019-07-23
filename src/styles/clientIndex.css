@@ -481,11 +481,72 @@ body{
   background: #19a99d !important;
   color: white !important;
 }
-.detail_preview_modal_container_inner{
 
-}
+ .assign_expert_container_inner{
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  background-color: white;
+  padding: 30px;
+  grid-gap: 30px;
 
 
+  }
+  .assign_form input{
+    border: none !important;
+    outline: none;
+    
+  }
+  .expert_list{
+    background-color: #f9f9f9;
+    width: 100%;
+    color: rgb(25, 169, 157);
+    display: flex;
+    margin:5px 0px;
+    cursor: pointer;
+    transition: .3s;
+  }
+  .expert_list:hover{
+    opacity: 0.5;
+  }
+  .select_indicator{
+    width: 10px;
+    background:red;
+    color:red;
+  }
+  .name_key{
+    font-family: "Poppins", sans-serif;
+    padding: 10px;
+  }
+  .assign_form{
+    margin-top: 40px;
+    text-align: right
+  }
+  .assign_form input[type = "text"] {
+    padding-top: 0px !important; 
+    margin-top: 0px !important
+  }
+  .assign_success_board{
+    background-color: white;
+    text-align: center;
+    padding: 50px;
+    color: rgb(25, 169, 157);
+  }
+  .hide_application{
+    display: none;
+  }
+  .form-header-main{
+    font-family: "Poppins", sans-serif;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    text-align: center;
+    padding: 10px !important;
+    text-align: center;
+  }
+  .currentMenu{
+    background-color: #056e65 !important;
+    margin-left: 10px;
+    outline: none;
+  }
 @media only screen and (max-width: 500px) {
     .d-menu-container-mobile{
       display: block;
@@ -583,6 +644,8 @@ body{
   .client_main_area_menu_icon{
     display: flex;
   }
+
+
 
 }
 

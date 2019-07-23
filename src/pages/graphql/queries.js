@@ -342,6 +342,7 @@ export const GET_ALL_GRADUATE_SCHOOL_ESSAY_REDRAFT_FORMS = gql`
 export const GET_ALL_EXPERTS = gql`
   query GetExperts($account_type: String!) {
     getExperts(account_type: $account_type) {
+      id
       first_name
       last_name
       phone

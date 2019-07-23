@@ -51,7 +51,7 @@ export default class resumeReviewForm extends React.Component {
                 referee: "empty",
                 curriculum_vitae: "CV.pdf",
                 package: this.props.package,
-                has_expert: false,
+                has_expert: "",
                 form_id: "empty",
                 status:"Vacant",
                 completed:false

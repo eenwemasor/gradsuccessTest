@@ -17,7 +17,7 @@ export default class resumeReviewForm extends React.Component {
                 summary_of_interest: "empty",
                 curriculum_vitae: "empty",
                 package: this.props.package,
-                has_expert: false,
+                has_expert: "",
                 form_id: "empty",
                 status:"Vacant",
                 completed:false
@@ -171,7 +171,7 @@ export default class resumeReviewForm extends React.Component {
                                   <progress value = "0" max= "100" id = "uploader">0%</progress>
                                 </div>
                                 <div className = "file_upload_label">
-                                  <label htmlFor="file" >Upload Curriculum Vitae</label>
+                                  <label htmlFor="file" >Upload Resume</label>
                                 </div>
                                 <br />
                                 <br />

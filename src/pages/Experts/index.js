@@ -3,7 +3,12 @@ import Footer from '../components/Footer'
 import RegisteredAccount from './registeredExperts'
 import loader from "../../images/loader.gif"
 
-import AllApplications from "./TableQueryData/allApplications"
+import NewApplications from "./TableQueryData/newApplications"
+import AssignedApplication from "./TableQueryData/assignedApplication"
+import InProgressApplication from "./TableQueryData/inProgressApplication"
+import CompletedApplication from "./TableQueryData/completedApplication"
+import ExpertsComponent from "./registeredExperts"
+
 import LogoutForm from "../components/Forms/logoutForm"
 
 import MainLayout from "../components/ExpertAccountComponents/mainLayout"
@@ -12,8 +17,13 @@ class IndexPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            AllApplicationsComponent:true,
+            NewApplications:true,
+            AssignedApplication:false,
+            InProgressApplication:false,
+            CompletedApplication:false,
             ExpertsComponent:false,
+            currentComponent:"New Applications",
+            currentMenu:"NewApplications"
             
         }
          this.handleDisplayComponent = this.handleDisplayComponent.bind(this);
@@ -32,14 +42,20 @@ class IndexPage extends Component {
 
     handleDisplayComponent(event){
         let Component =  event.target.id;
+        let currentComponent =  event.target.name;
 
         this.setState({
-            AllApplicationsComponent:false,
+            NewApplications:false,
+            AssignedApplication:false,
+            InProgressApplication:false,
+            CompletedApplication:false,
             ExpertsComponent:false,
         })
 
         this.setState({
-            [Component]:true
+            [Component]:true,
+            currentComponent:currentComponent,
+            currentMenu:Component
         })
     }
 
@@ -51,14 +67,50 @@ class IndexPage extends Component {
                     <div className = "main-content">
                             <div className = "client_main_area">
                                 <div className = "client_main_area_menu">
-                                    <button id = "AllApplicationsComponent" onClick = {this.handleDisplayComponent}>All Request</button>
-                                    <button id = "ExpertsComponent" onClick = {this.handleDisplayComponent}>Experts</button>
+                                    <button 
+                                        className = {this.state.currentMenu === "NewApplications"? "currentMenu":""} 
+                                        name = "New Applications" 
+                                        id = "NewApplications" 
+                                        onClick = {this.handleDisplayComponent}>New Applications
+                                    </button>
+
+                                    <button 
+                                        className = {this.state.currentMenu === "AssignedApplication" ? "currentMenu":""} 
+                                        name = "Assigned Applications" 
+                                        id = "AssignedApplication" 
+                                        onClick = {this.handleDisplayComponent}>Assigned Applications
+                                    </button>
+
+                                    <button 
+                                        className = {this.state.currentMenu === "InProgressApplication" ? "currentMenu":""} 
+                                        name = "In Progress Applications" 
+                                        id = "InProgressApplication" 
+                                        onClick = {this.handleDisplayComponent}>In Progress Applications
+                                    </button>
+
+                                    <button 
+                                        className = {this.state.currentMenu === "CompletedApplication" ? "currentMenu":""} 
+                                        name = "Completed Applications" 
+                                        id = "CompletedApplication" 
+                                        onClick = {this.handleDisplayComponent}>Completed Applications
+                                    </button>
+
+                                    <button 
+                                        className = {this.state.currentMenu === "ExpertsComponent" ? "currentMenu":""} 
+                                        name = "Experts List" 
+                                        id = "ExpertsComponent" 
+                                        onClick = {this.handleDisplayComponent}>Experts
+                                    </button>
                                     <LogoutForm />
                                 </div>
                                 <div>
+                                    <div><h3 className = "form-header-main" >{this.state.currentComponent}</h3></div>
                                     <div className="client_main_area_content_area">
-                                        {this.state.AllApplicationsComponent && <AllApplications />}
-                                        {this.state.ExpertsComponent && <RegisteredAccount />}
+                                        {this.state.NewApplications && <NewApplications />}
+                                        {this.state.AssignedApplication && <AssignedApplication />}
+                                        {this.state.InProgressApplication && <InProgressApplication />}
+                                        {this.state.CompletedApplication && <CompletedApplication />}
+                                        {this.state.ExpertsComponent && <ExpertsComponent />}
                                     </div>
                                 </div>
                             </div>
