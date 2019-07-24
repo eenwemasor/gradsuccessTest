@@ -547,6 +547,9 @@ body{
     margin-left: 10px;
     outline: none;
   }
+  .spacing{
+    height: 50px;
+  }
 @media only screen and (max-width: 500px) {
     .d-menu-container-mobile{
       display: block;

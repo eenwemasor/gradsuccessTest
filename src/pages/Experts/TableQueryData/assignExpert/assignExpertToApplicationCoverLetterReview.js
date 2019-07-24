@@ -33,6 +33,9 @@ export default class assignExpertToApplication extends React.Component {
 		this.setState({
 			assignedSucess:true
 		})
+		setTimeout(function(){
+			window.location.reload();
+		},1000)
 	}
 
 

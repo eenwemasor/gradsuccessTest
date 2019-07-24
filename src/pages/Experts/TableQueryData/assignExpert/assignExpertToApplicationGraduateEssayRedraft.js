@@ -4,7 +4,6 @@ import loader from "../../../../images/loader.gif"
 import { Mutation } from 'react-apollo';
 import {UPDATE_GRADUATE_SCHOOL_ESSAY_REDRAFT} from '../../../graphql/mutations';
 
-
 import {GET_ALL_EXPERTS} from "../../../graphql/queries"
 
 export default class assignExpertToApplication extends React.Component {
@@ -14,23 +13,47 @@ export default class assignExpertToApplication extends React.Component {
 		this.state = {
 			name:"",
 			phone:"",
-			email:""
+			email:"",
+			id:"",
+			assignedSucess:false
 		}
 		this.setExpertInfo = this.setExpertInfo.bind(this)
 	}
 
-	setExpertInfo(firstName, lastName, phone, email){
+	setExpertInfo(firstName, lastName, phone, email,id){
 		const Name = firstName + " " + lastName;
 		this.setState({
 			name:Name,
 			phone:phone,
-			email:email
+			email:email,
+			id:id
 		})
-		console.log(this.state);
+	}
+	formSubmitted(data){
+		this.setState({
+			assignedSucess:true
+		})
+		
+		setTimeout(function(){
+			window.location.reload();
+		},1000)
 	}
 
 
 render() {
+	 if(this.state.assignedSucess) {
+	 		return (
+ 			<div className = "assign_expert_container">
+		    	<div className = "assign_success_board">
+					<h1>Success<i>!</i></h1>
+		           	<div>
+		            	<p>Application was successfully Assign to {this.state.name}</p>
+					</div>
+	            </div>
+            </div>
+
+            );
+	 }else{
     return(
     	<div className = "assign_expert_container">
     	<h3 className = "form-header" >Assign Application to an Expert</h3>
@@ -64,7 +87,7 @@ render() {
 	                                    data.getExperts.map((Expert,index) =>
 					                        <div className="expert_list" 
 					                        key = {index}
-					                        onClick = {() => this.setExpertInfo(Expert.first_name, Expert.last_name, Expert.phone, Expert.email)}>
+					                        onClick = {() => this.setExpertInfo(Expert.first_name, Expert.last_name, Expert.phone, Expert.email, Expert.id)}>
 										      	<div className="select_indicator">i</div>
 										      	<div className="name_key">{Expert.first_name + " " + Expert.last_name}</div>
 									    	</div>
@@ -93,8 +116,12 @@ render() {
 					            onSubmit={e => {
 				                    e.preventDefault();
 				                    createResumeReviewData({ 
-				                      name:"enwemasor"
-				                     });
+				                     	variables: {
+				                     		id:this.props.userID,
+				                     		has_expert:this.state.id,
+				                     		status:"Assigned"
+				                     	}
+                    					});
 				                 }}
 					            className = "assign_form">
 					                <div className="row-full">
@@ -129,11 +156,11 @@ render() {
 				         )}
 
             	</Mutation>
-
       		</div>
       		</div>
       </div>
     )
+}
 
 }
-		}
+}

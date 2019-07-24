@@ -111,6 +111,7 @@ class IndexPage extends Component {
                                         {this.state.InProgressApplication && <InProgressApplication />}
                                         {this.state.CompletedApplication && <CompletedApplication />}
                                         {this.state.ExpertsComponent && <ExpertsComponent />}
+                                        <div className = "spacing"></div>
                                     </div>
                                 </div>
                             </div>

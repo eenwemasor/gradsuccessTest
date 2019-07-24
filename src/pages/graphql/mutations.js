@@ -351,7 +351,7 @@ export const UPDATE_RESUME_REVIEW_FORM = gql`
 			status:$status
 			){
 			name
-    industry_applied_for
+    
 		}
 	}
 `;
@@ -368,7 +368,7 @@ export const UPDATE_COVER_LETTER_REVIEW_FORM = gql`
 			status:$status
 			){
 			name
-    		industry_applied_for
+    		
 		}
 	}
 `;
@@ -384,7 +384,7 @@ export const UPDATE_GRADUATE_SCHOOL_STATEMENT_REVIEW_FORM = gql`
 			status:$status
 			){
 			name
-    industry_applied_for
+    
 		}
 	}
 `;
@@ -400,7 +400,7 @@ export const UPDATE_COVER_LETTER_REDRAFT = gql`
 			status:$status
 			){
 			name
-    industry_applied_for
+    
 		}
 	}
 `;
@@ -416,7 +416,7 @@ export const UPDATE_GRADUATE_SCHOOL_ESSAY_REDRAFT = gql`
 			status:$status
 			){
 			name
-    industry_applied_for
+    
 		}
 	}
 `;
