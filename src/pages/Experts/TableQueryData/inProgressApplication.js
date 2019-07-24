@@ -144,7 +144,7 @@ render() {
                                         <h4>No Item Available</h4>
                                     </div>:
                                     data.getAllCoverLetterRedraft.map((Item,index) =>
-                                        <div key = {index} className = {!Item.completed && Item.status ==="Assigned"?"":"hide_application"}>
+                                        <div key = {index} className = {!Item.completed && Item.status ==="Assigned"?" ":"hide_application"}>
                                             <div className = "client_expert_listing_main" >
                                                 <div>
                                                     <h4>{Item.name}</h4>
@@ -327,7 +327,7 @@ render() {
                                         <h4>No Item Available</h4>
                                     </div>:
                                     data.getAllGraduateSchoolStatementReviewForm.map((Item,index) =>
-                                        <div key = {index} className = {Item.completed && Item.status ==="Assigned"?"":"hide_application"}>
+                                        <div key = {index} className = {!Item.completed && Item.status ==="Assigned"?"":"hide_application"}>
                                             <div className = "client_expert_listing_main" >
                                                 <div>
                                                     <h4>{Item.name}</h4>
