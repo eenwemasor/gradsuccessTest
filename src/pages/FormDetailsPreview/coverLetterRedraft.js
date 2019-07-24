@@ -3,7 +3,7 @@ import { Query } from "react-apollo";
 import loader from "../../images/loader.gif"
 import {COVER_LETTER_REDRAFT} from "../graphql/queries"
 
-
+import ExpertInCharge from "../Client/getExpertInCharge"
 
 
 
@@ -37,8 +37,10 @@ render() {
               if (error) return <div>failed to load data</div>
               return (
                  <div className="form_preview">
+
                 <div className="form_preview_inner">
 
+                    <ExpertInCharge id = {data.getCoverLetterRedraft.has_expert}/>
                     <h3 className = "form-header" >Form Details </h3>
                     <div className="form_preview_col_1">
                         <div className="form_preview_fields">
@@ -223,7 +225,7 @@ render() {
 
                         <div className = "spacing">
                                 
-                            </div>
+                        </div>
                     </div>
 
 

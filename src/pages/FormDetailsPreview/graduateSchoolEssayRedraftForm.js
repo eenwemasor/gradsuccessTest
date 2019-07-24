@@ -1,8 +1,8 @@
 import { React, Component } from "react"
 import { Query } from "react-apollo";
 import loader from "../../images/loader.gif"
-
 import { GRADUATE_SCHOOL_ESSAY_REDRAFT_FORM } from "../graphql/queries"
+import ExpertInCharge from "../Client/getExpertInCharge"
 
 class Message extends Component {
     constructor(props) {
@@ -32,7 +32,7 @@ class Message extends Component {
                         return (
             <div className="form_preview">
                 <div className="form_preview_inner">
-
+                    <ExpertInCharge id = {data.getGraduateSchoolEssayRedraftForm.has_expert}/>
                     <h3 className = "form-header" >Form Details </h3>
                     <div className="form_preview_col_1">
                         <div className="form_preview_fields">

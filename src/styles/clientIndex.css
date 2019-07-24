@@ -280,11 +280,11 @@ body{
   margin: 50px 0px;
   display: grid;
   grid-template-columns: 2fr 8fr;
-
 }
 .client_main_area_menu{
   display: flex;
   flex-direction: column;
+  position: relative;
 
 }
 .client_main_area_menu button{
@@ -342,9 +342,10 @@ body{
   display: none;
 }
 .client_main_area_content_area{
-  width: 80%;
+  width: 100%;
   margin: auto;
   position: relative;
+  padding-left: 50px;
 }
 .form_preview{
   margin: 0px auto;
@@ -550,6 +551,141 @@ body{
   .spacing{
     height: 50px;
   }
+  .expert_in_charge_board{
+    background-color: #f9f9f9;
+    width: 40%;
+    padding: 5px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    font-size: 11px;
+    line-height: 18px;
+    text-align: right;
+    padding-right: 20px;
+  }
+  .expert_in_charge_board h4{
+    font-family: "Poppins", sans-serif;
+    color: black;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .expert_in_charge_board span{
+    color: #ccc;
+    font-weight: bolder;
+  }
+
+  .container {
+    padding: 10px;
+    margin: 10px 0;
+    color: white;
+    padding: 30px;
+    font-size: 12px;
+
+}
+/* Darker chat container */
+
+.lighter {
+  background-color: white;
+  color: black;
+  border-radius: 10px 40px;
+  border: 1px solid #ccc;
+  margin-top: 20px;
+}
+
+.lighter:nth-child( odd ) {
+  background-color: #3dfcec;
+  color: black;
+  border-radius: 40px 10px;
+  margin-top: 20px;s
+  border: none;
+}
+
+.chat_component{
+  width: 90%;
+  margin: auto;
+  padding-right: 50px;
+  max-height: 450px;
+  overflow-y: auto;
+}
+.chat_component {
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+}
+.chat_component::-webkit-scrollbar {
+    display: none; 
+}
+
+/* Clear floats */
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Style images */
+.container img {
+  float: left;
+  max-width: 40px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+/* Style the right image */
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+/* Style time text */
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+/* Style time text */
+.time-left {
+  float: left;
+  color: #999;
+}
+
+.chat_form{
+  display: grid;
+  grid-template-columns: 8fr 2fr;
+
+}
+.chat_form input{
+  background-color: transparent;
+  color: black;
+  border: none;
+  padding: 5px;
+  font-family: "Poppins", sans-serif;
+
+}
+.chat_form button{
+  display: flex;
+    color: white;
+    font-size: 12px;
+    background-color: #19a99d;
+    border: none;
+    align-items: center;
+    box-shadow: 2px 2px 2px 2px #ccc;
+  
+}
+
+.chat_form img{
+  width: 30px;
+  margin-bottom: 0px
+}
+.chat_header{
+  padding: 7px;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+}
+
 @media only screen and (max-width: 500px) {
     .d-menu-container-mobile{
       display: block;

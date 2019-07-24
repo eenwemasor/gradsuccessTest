@@ -18,6 +18,7 @@ export default class queries extends React.Component {
 export const LOGGED_IN_USER = gql`
   {
     me{
+      id
       first_name
       last_name
       phone
@@ -351,5 +352,16 @@ export const GET_ALL_EXPERTS = gql`
       email
       account_type
     }
+  }
+`;
+
+export const GET_EXPERT_IN_CHARGE = gql`
+  query GetExpertInCharge($id: ID!) {
+      getExpertInCharge(id:$id){
+        id
+        first_name
+        last_name
+        email
+      }
   }
 `;

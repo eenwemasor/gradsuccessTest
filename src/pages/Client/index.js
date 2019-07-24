@@ -16,6 +16,8 @@ import leave_a_message from "../../images/icons/leave_a_message.png"
 import change_cv from "../../images/icons/change_cv.png"
 import complaint from "../../images/icons/complaint.png"
 
+
+
 const customStyles = {
   content : {
     top                   : '0%',
@@ -89,14 +91,16 @@ class IndexPage extends Component {
                 return (
                 <div>
                     <MainLayout  userID = {data.me}/>
+
                         <div className = "main-content">
                             <div className = "client_main_area">
                                 <div className = "client_main_area_menu">
                                     <button id = "accountInfo" onClick = {this.handleDisplayComponent}>Uploaded Info</button>
                                     <button id = "leaveAMessage" onClick = {this.handleDisplayComponent}>Leave a Message</button>
                                     <LogoutForm />
+                                    
                                 </div>
-
+                            {/*
                                 <div className = "client_main_area_menu_icon">
                                    <img  id = "accountInfo" onClick={this.handleDisplayComponent} src={account_info} alt="account info" />
                                    <img  id = "leaveAMessage" onClick={this.handleDisplayComponent} src={leave_a_message} alt="leave a essage" />
@@ -104,12 +108,12 @@ class IndexPage extends Component {
                                    <img  id = "changeCV" onClick={this.handleDisplayComponent} src={change_cv} alt="change cv" />
                                     <LogoutForm />
                                 </div>
-
+                            */}
 
                                 <div>
                                     <div className="client_main_area_content_area">
-                                    {this.state.accountInfo && <AccountInfo table = {data.me.package} userID = {data.me.form_id}/>}
-                                    {this.state.leaveAMessage && <LeaveAMessageForm />}
+                                        {this.state.accountInfo && <AccountInfo table = {data.me.package} userID = {data.me.form_id}/>}
+                                        {this.state.leaveAMessage && <LeaveAMessageForm />}
                                     </div>
                                 </div>
                             </div>
