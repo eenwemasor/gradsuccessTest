@@ -598,7 +598,7 @@ body{
   background-color: #3dfcec;
   color: black;
   border-radius: 40px 10px;
-  margin-top: 20px;s
+  margin-top: 20px;
   border: none;
 }
 
@@ -608,6 +608,13 @@ body{
   padding-right: 50px;
   max-height: 450px;
   overflow-y: auto;
+}
+.chat_component {
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+}
+.chat_component::-webkit-scrollbar {
+    display: none; 
 }
 
 /* Clear floats */
