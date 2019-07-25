@@ -45,9 +45,8 @@ export default class leaveAMessageForm extends React.Component {
 				<div className = "chat_component">
 					{this.state.data.map((messageInstance,index) =>
                             <div className="container lighter">
-							  	<span className="time-right">{this.state.sender}</span>
-							  	<img src="https://www.w3schools.com/w3images/bandmember.jpg" alt="Avatar" />
 							  	<p>{messageInstance.messageBody}</p>
+							  	<span className="time-right">{this.state.sender}</span>
 							  	<span className="time-right">{this.state.dateSent}</span>
 							</div>
                         )}

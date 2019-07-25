@@ -607,6 +607,7 @@ body{
   margin: auto;
   padding-right: 50px;
   max-height: 450px;
+  min-height: 450px;
   overflow-y: auto;
 }
 .chat_component {
@@ -626,12 +627,20 @@ body{
 
 /* Style images */
 .container img {
-  float: left;
   max-width: 40px;
   width: 100%;
   margin-right: 20px;
   border-radius: 50%;
 }
+
+.lighter:nth-child( odd ) img{
+  float: left;
+}
+
+.lighter:nth-child( even ) img{
+  float: right;
+}
+
 
 /* Style the right image */
 .container img.right {
@@ -643,7 +652,10 @@ body{
 /* Style time text */
 .time-right {
   float: right;
-  color: #aaa;
+  color: darkgreen;
+  font-family: "Poppins", sans-serif;
+  padding-left: 20px;
+
 }
 
 /* Style time text */
@@ -653,8 +665,10 @@ body{
 }
 
 .chat_form{
-  display: grid;
-  grid-template-columns: 8fr 2fr;
+    display: grid;
+    grid-template-columns: 8fr 2fr;
+    margin-bottom: 0px;
+    margin-top: 50px;
 
 }
 .chat_form input{
@@ -663,6 +677,7 @@ body{
   border: none;
   padding: 5px;
   font-family: "Poppins", sans-serif;
+  border: 1px solid #19a99d
 
 }
 .chat_form button{
@@ -673,6 +688,7 @@ body{
     border: none;
     align-items: center;
     box-shadow: 2px 2px 2px 2px #ccc;
+    font-family: "Poppins", sans-serif;
   
 }
 

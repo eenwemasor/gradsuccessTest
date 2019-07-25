@@ -33,20 +33,20 @@ class getExpertInCharge extends Component {
                     </div>
                 </div>
                 )
-              if (error) return <div>failed to load data</div>
+              if (error) return (
+                      <div className = "expert_in_charge_board">
+                        <div>
+                            <p>Your Application is not Assigned yet</p>
+                        </div>
+                    </div>
+                    )
               return (
                 <div className = "expert_in_charge_board">
-                    {data.getExpertInCharge.length != 0?
                     <div>
-                    <h4>Assigned Expert</h4>
-                    <p><span>Name:</span> {data.getExpertInCharge[0].first_name  + " " + data.getExpertInCharge[0].last_name}</p>
-                    <p><span>Email:</span> {data.getExpertInCharge[0].email}</p>
-                    </div>:
-                    <div>
-                        <p>Your Application<br /> 
-                            is no Assigned yet</p>
+                        <h4>Assigned Expert</h4>
+                        <p><span>Name:</span> {data.getExpertInCharge[0].first_name  + " " + data.getExpertInCharge[0].last_name}</p>
+                        <p><span>Email:</span> {data.getExpertInCharge[0].email}</p>
                     </div>
-                    }
                 </div>
               );
             }}
