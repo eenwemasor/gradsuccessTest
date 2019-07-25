@@ -7,6 +7,9 @@ import { ApolloLink } from 'apollo-link';
 import {AUTH_TOKEN} from './constants';
 import { setContext } from 'apollo-link-context';
 import fetch from 'isomorphic-fetch';
+
+
+
 const link = createUploadLink({
 	uri: "https://infinite-cove-53014.herokuapp.com/graphql",
   fetch

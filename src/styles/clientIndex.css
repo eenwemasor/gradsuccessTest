@@ -609,13 +609,6 @@ body{
   max-height: 450px;
   overflow-y: auto;
 }
-.chat_component {
-    -ms-overflow-style: none;  
-    scrollbar-width: none; 
-}
-.chat_component::-webkit-scrollbar {
-    display: none; 
-}
 
 /* Clear floats */
 .container::after {
