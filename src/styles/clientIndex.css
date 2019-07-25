@@ -594,13 +594,21 @@ body{
   margin-top: 20px;
 }
 
-.lighter:nth-child( odd ) {
+#uncoloured {
   background-color: #3dfcec;
   color: black;
   border-radius: 40px 10px;
   margin-top: 20px;
   border: none;
 }
+#coloured {
+  background-color: white;
+  color: black;
+  border-radius: 40px 10px;
+  margin-top: 20px;
+  border: none;
+}
+
 
 .chat_component{
   width: 90%;
@@ -631,14 +639,6 @@ body{
   width: 100%;
   margin-right: 20px;
   border-radius: 50%;
-}
-
-.lighter:nth-child( odd ) img{
-  float: left;
-}
-
-.lighter:nth-child( even ) img{
-  float: right;
 }
 
 
@@ -689,6 +689,7 @@ body{
     align-items: center;
     box-shadow: 2px 2px 2px 2px #ccc;
     font-family: "Poppins", sans-serif;
+    cursor: pointer;
   
 }
 
@@ -700,6 +701,29 @@ body{
   padding: 7px;
   font-weight: bold;
   border-bottom: 1px solid #ccc;
+}
+.message_sent_notification{
+  font-family: "Poppins", sans-serif;
+  position: absolute;
+  background-color: green;
+  padding: 3px 40px;
+  color: white;
+  bottom: 105%;
+  border-radius: 2px;
+  opacity: 0.7;
+  -webkit-animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
+  -o-animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
+  animation: showSuccess 2s ease-in-out 0s 1 alternate forwards;
+  display: none;
+}
+
+.sending_message_notification{
+  font-family: "Poppins", sans-serif;
+  position: absolute;
+  bottom: 105%;
+  padding: 3px 40px;
+  background-color: orange;
+  border-radius: 3px;
 }
 
 @media only screen and (max-width: 500px) {

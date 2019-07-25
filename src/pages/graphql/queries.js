@@ -365,3 +365,20 @@ export const GET_EXPERT_IN_CHARGE = gql`
       }
   }
 `;
+
+
+export const FETCH_CLIENT_MESSAGES = gql`
+  query GetClientMessages($client_id: String!) {
+    getClientMessages(client_id:$client_id){
+      id
+      client_id
+      client_name
+      expert_id
+      expert_name
+      message_body
+      created_at
+  }
+  }
+`;
+
+

@@ -43,7 +43,7 @@ render() {
                                         <div key = {index}>
                                             <div className = "client_expert_listing_main" >
                                                 <div>
-                                                    <h4>{Expert.first_name + " " + Expert.first_name}</h4>
+                                                    <h4>{Expert.first_name + " " + Expert.last_name}</h4>
                                                     <p>{Expert.phone}</p>
                                                     <p>{Expert.email}</p>
                                                 </div>

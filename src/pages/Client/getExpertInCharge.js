@@ -10,7 +10,7 @@ class getExpertInCharge extends Component {
         }
     }
     componentDidMount(){
-        
+          localStorage.setItem("chat_state",this.props.id);
     }
 
     handleDisplayComponent(event){
@@ -36,17 +36,26 @@ class getExpertInCharge extends Component {
               if (error) return (
                       <div className = "expert_in_charge_board">
                         <div>
-                            <p>Your Application is not Assigned yet</p>
+                            <p>Error fetching data</p>
                         </div>
                     </div>
                     )
               return (
+                  <div>
+                 {data.getExpertInCharge.length !== 0?
                 <div className = "expert_in_charge_board">
                     <div>
                         <h4>Assigned Expert</h4>
                         <p><span>Name:</span> {data.getExpertInCharge[0].first_name  + " " + data.getExpertInCharge[0].last_name}</p>
                         <p><span>Email:</span> {data.getExpertInCharge[0].email}</p>
                     </div>
+                </div>:
+                <div className = "expert_in_charge_board">
+                    <div>
+                        <p>Your Application is not Assigned yet</p>
+                    </div>
+                </div>
+                }
                 </div>
               );
             }}

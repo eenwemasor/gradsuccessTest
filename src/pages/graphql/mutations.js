@@ -423,6 +423,31 @@ export const UPDATE_GRADUATE_SCHOOL_ESSAY_REDRAFT = gql`
 
 
 
+export const CREATE_MESSAGE = gql`
+    mutation CreateMessages(
+    $client_id:String!,
+	$client_name:String!,
+	$expert_id:String!,
+	$expert_name:String!,
+	$message_body:String!
+	){
+		createMessages(
+		client_id:$client_id,
+		client_name:$client_name,
+		expert_id:$expert_id,
+		expert_name:$expert_name,
+		message_body:$message_body){
+
+	    client_id
+		client_name
+		expert_id
+		expert_name
+		message_body
+  }
+	}
+`;
+
+
 export default class mutations extends React.Component {
 
 

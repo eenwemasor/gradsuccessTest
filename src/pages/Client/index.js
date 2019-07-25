@@ -100,20 +100,11 @@ class IndexPage extends Component {
                                     <LogoutForm />
                                     
                                 </div>
-                            {/*
-                                <div className = "client_main_area_menu_icon">
-                                   <img  id = "accountInfo" onClick={this.handleDisplayComponent} src={account_info} alt="account info" />
-                                   <img  id = "leaveAMessage" onClick={this.handleDisplayComponent} src={leave_a_message} alt="leave a essage" />
-                                   <img  id = "leaveAComplain" onClick={this.handleDisplayComponent} src={complaint} alt="Complaint" />
-                                   <img  id = "changeCV" onClick={this.handleDisplayComponent} src={change_cv} alt="change cv" />
-                                    <LogoutForm />
-                                </div>
-                            */}
 
                                 <div>
                                     <div className="client_main_area_content_area">
                                         {this.state.accountInfo && <AccountInfo table = {data.me.package} userID = {data.me.form_id}/>}
-                                        {this.state.leaveAMessage && <LeaveAMessageForm />}
+                                        {this.state.leaveAMessage && <LeaveAMessageForm  logged_in_user_id = {data.me.id}/>}
                                     </div>
                                 </div>
                             </div>
