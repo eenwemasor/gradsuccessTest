@@ -410,6 +410,7 @@ body{
     margin-top: 10px;
     border: 1px solid mediumaquamarine;
     color: #056e65;
+    margin-right: 50px;
 }
 .client_expert_listing_main span{
   font-family: "Poppins", sans-serif;
@@ -617,6 +618,8 @@ body{
   max-height: 450px;
   min-height: 450px;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column-reverse;
 }
 .chat_component {
     -ms-overflow-style: none;  
@@ -828,3 +831,41 @@ body{
 
 }
 
+.unauthorized{
+  width: 50%;
+  margin: auto;
+  padding: 40px 20px;
+  text-align: center;
+
+
+}
+.unauthorized h1{
+  color: #ccc;
+  opacity: 0.5;
+  font-size: 60px;
+  padding-top: 10px;
+}
+
+.assigned_application_board{
+  padding: 5px;
+  font-size: 12px;
+  color: black;
+  background-color: white;
+  text-align: left;
+  min-height: 200px;
+}
+.assigned_application_board h5{
+  margin-bottom: 10px; 
+}
+.assigned_application_board .clientItem{
+  padding: 5px 0px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  text-align: left;
+  color: black;
+}
+.assigned_application_board .clientItem:hover{
+  padding: 5px 15px;
+  opacity: .5;
+}

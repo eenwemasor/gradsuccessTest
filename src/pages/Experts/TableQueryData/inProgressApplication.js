@@ -15,11 +15,6 @@ import GraduateSchoolEssayRedraftForm from "../../FormDetailsPreview/graduateSch
 import GraduateSchoolStatementReviewForm from "../../FormDetailsPreview/graduateSchoolStatementReviewForm"
 import ResumeReviewForm from "../../FormDetailsPreview/resumeReviewForm"
 
-import AssignExpertToApplicationResumeReview from "./assignExpert/assignExpertToApplicationResumeReview"
-import AssignExpertToApplicationCoverLetterReview from "./assignExpert/assignExpertToApplicationCoverLetterReview"
-import AssignExpertToApplicationCoverLetterRedraft from "./assignExpert/assignExpertToApplicationCoverLetterRedraft"
-import AssignExpertToApplicationGraduateEssayRedraft from "./assignExpert/assignExpertToApplicationGraduateEssayRedraft"
-import AssignExpertToApplicationGraduateStatementReview from "./assignExpert/assignExpertToApplicationGraduateStatementReview"
 
 
 
@@ -44,18 +39,11 @@ class AllApplications extends Component {
             resumeReviewForm:false,
             graduateSchoolStatementReviewForm:false,
             formID:"",
-            showAssignExpertModal:false,
-            assignExpertToApplicationResumeReview: false,
-            assignExpertToApplicationCoverLetterReview:false,
-            assignExpertToApplicationCoverLetterRedraft:false,
-            assignExpertToApplicationGraduateEssayRedraft:false,
-            assignExpertToApplicationGraduateStatementReview:false,
             id:""
 
         }
         this.OpenApplicationDetails = this.OpenApplicationDetails.bind(this)
         this.handleCloseModal = this.handleCloseModal.bind(this)
-        this.OpenAssignExpertModal = this.OpenAssignExpertModal.bind(this)
 }
 
 OpenApplicationDetails(formType,formID){
@@ -75,47 +63,11 @@ handleCloseModal(){
         graduateSchoolEssayRedraftForm:false,
         resumeReviewForm:false,
         graduateSchoolStatementReviewForm:false,
-        showAssignExpertModal:false,
-        assignExpertToApplicationResumeReview: false,
-        assignExpertToApplicationCoverLetterReview:false,
-        assignExpertToApplicationCoverLetterRedraft:false,
-        assignExpertToApplicationGraduateEssayRedraft:false,
-        assignExpertToApplicationGraduateStatementReview:false,
 
     })   
 }
 
-OpenAssignExpertModal(formType, name, id){
-    if(formType === "resumeReviewForm"){
-        this.setState({
-            id:id,
-            assignExpertToApplicationResumeReview: true,
-        })
-    }else if(formType === "coverLetterReviewForm"){
-        this.setState({
-            id:id,
-            assignExpertToApplicationCoverLetterReview:true,
-        })
-    }else if(formType === "graduateSchoolEssayRedraftForm"){
-        this.setState({
-            id:id,
-            assignExpertToApplicationGraduateEssayRedraft:true,
-        })
-    }else if(formType === "coverLetterRedraftForm"){
-        this.setState({
-            id:id,
-            assignExpertToApplicationCoverLetterRedraft:true,
-        })
-    }else{
-        this.setState({
-            id:id,
-            assignExpertToApplicationGraduateStatementReview:true,
-        })
-    }
-    
 
-
-}
 
 
 render() {
@@ -154,7 +106,6 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                    <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>
                                                     
                                                 </div>
                                             </div>
@@ -200,7 +151,6 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                    <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>
                                                     
                                                 </div>
                                             </div>
@@ -246,7 +196,6 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                    <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>
                                                     
                                                 </div>
                                             </div>
@@ -292,7 +241,6 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package, Item.form_id)}>view</button>
-                                                    <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -337,7 +285,6 @@ render() {
                                                 </div>
                                                 <div className = "client_expert_listing_btn_wrapper">
                                                     <button onClick={() => this.OpenApplicationDetails(Item.package,Item.form_id)}>view</button>
-                                                    <button onClick={() => this.OpenAssignExpertModal(Item.package, Item.name, Item.id)}>Assign Expert</button>
                                                     
                                                 </div>
                                             </div>
@@ -420,81 +367,6 @@ render() {
             </div>
             <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
         </Modal>
-
-
-        {/* Asigning of expers for each table of the application*/}
-
-        <Modal 
-           isOpen={this.state.assignExpertToApplicationResumeReview}
-           contentLabel="Minimal Modal Example"
-           style={customStyles}
-           ariaHideApp={false}
-        >
-            <div className = "detail_preview_modal_container">
-                <div className = "detail_preview_modal_container_inner">
-                      <AssignExpertToApplicationResumeReview userID = {this.state.id} />
-                </div>
-            </div>
-            <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
-        </Modal>
-
-        <Modal 
-           isOpen={this.state.assignExpertToApplicationCoverLetterReview}
-           contentLabel="Minimal Modal Example"
-           style={customStyles}
-           ariaHideApp={false}
-        >
-            <div className = "detail_preview_modal_container">
-                <div className = "detail_preview_modal_container_inner">
-                      <AssignExpertToApplicationCoverLetterReview userID = {this.state.id} />
-                </div>
-            </div>
-            <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
-        </Modal>
-
-
-        <Modal 
-           isOpen={this.state.assignExpertToApplicationCoverLetterRedraft}
-           contentLabel="Minimal Modal Example"
-           style={customStyles}
-           ariaHideApp={false}
-        >
-            <div className = "detail_preview_modal_container">
-                <div className = "detail_preview_modal_container_inner">
-                      <AssignExpertToApplicationCoverLetterRedraft userID = {this.state.id} />
-                </div>
-            </div>
-            <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
-        </Modal>
-
-        <Modal 
-           isOpen={this.state.assignExpertToApplicationGraduateEssayRedraft}
-           contentLabel="Minimal Modal Example"
-           style={customStyles}
-           ariaHideApp={false}
-        >
-            <div className = "detail_preview_modal_container">
-                <div className = "detail_preview_modal_container_inner">
-                      <AssignExpertToApplicationGraduateEssayRedraft userID = {this.state.id} />
-                </div>
-            </div>
-            <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
-        </Modal>
-
-        <Modal 
-           isOpen={this.state.assignExpertToApplicationGraduateStatementReview}
-           contentLabel="Minimal Modal Example"
-           style={customStyles}
-           ariaHideApp={false}
-        >
-            <div className = "detail_preview_modal_container">
-                <div className = "detail_preview_modal_container_inner">
-                      <AssignExpertToApplicationGraduateStatementReview userID = {this.state.id} />
-                </div>
-            </div>
-            <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
-        </Modal>
-
         </div>
     )
 }

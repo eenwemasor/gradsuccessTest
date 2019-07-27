@@ -9,6 +9,8 @@ import AccountInfo from "./account"
 import LoginForm from "../components/Forms/loginForm"
 import LogoutForm from "../components/Forms/logoutForm"
 
+import NotFoundPage from "../401"
+
 import LeaveAMessageForm from "../components/Forms/leaveAMessageForm"
 
 import account_info from "../../images/icons/account_info.png"
@@ -42,6 +44,7 @@ class IndexPage extends Component {
         }
         this.handleDisplayComponent = this.handleDisplayComponent.bind(this);
         this.logoutClient = this.logoutClient.bind(this);
+         this.handleCloseModal = this.handleCloseModal.bind(this)
     }
     componentDidMount(){
         this.setState({
@@ -51,8 +54,9 @@ class IndexPage extends Component {
         if (this.state.loggedIn === "") {
            this.setState({ showModal: true });
         }
-
-        
+    }
+     handleCloseModal () {
+          this.setState({ showModal: false });
     }
 
     handleDisplayComponent(event){
@@ -90,26 +94,31 @@ class IndexPage extends Component {
                 if (error) return `Error! ${error.message}`;
                 return (
                 <div>
-                    <MainLayout  userID = {data.me}/>
+                    {data.me.account_type === "Expert"?
+                        <NotFoundPage />
+                        :<div>
+                        <MainLayout  userID = {data.me}/>
 
-                        <div className = "main-content">
-                            <div className = "client_main_area">
-                                <div className = "client_main_area_menu">
-                                    <button id = "accountInfo" onClick = {this.handleDisplayComponent}>Uploaded Info</button>
-                                    <button id = "leaveAMessage" onClick = {this.handleDisplayComponent}>Leave a Message</button>
-                                    <LogoutForm />
-                                    
-                                </div>
+                            <div className = "main-content">
+                                <div className = "client_main_area">
+                                    <div className = "client_main_area_menu">
+                                        <button id = "accountInfo" onClick = {this.handleDisplayComponent}>Uploaded Info</button>
+                                        <button id = "leaveAMessage" onClick = {this.handleDisplayComponent}>Leave a Message</button>
+                                        <LogoutForm />
+                                        
+                                    </div>
 
-                                <div>
-                                    <div className="client_main_area_content_area">
-                                        {this.state.accountInfo && <AccountInfo table = {data.me.package} userID = {data.me.form_id}/>}
-                                        {this.state.leaveAMessage && <LeaveAMessageForm  logged_in_user_id = {data.me.id}/>}
+                                    <div>
+                                        <div className="client_main_area_content_area">
+                                            {this.state.accountInfo && <AccountInfo table = {data.me.package} userID = {data.me.form_id}/>}
+                                            {this.state.leaveAMessage && <LeaveAMessageForm  logged_in_user_id = {data.me.id}/>}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        <Footer />
                         </div>
-                    <Footer />
+                    }
                 </div>
                     );
                     }}
@@ -125,6 +134,7 @@ class IndexPage extends Component {
                            ariaHideApp={false}
                         >
                           <LoginForm />
+                          <a className = "ModalCloseBut" onClick={this.handleCloseModal}>x</a>
                         </Modal>
                 </div>
             )

@@ -41,7 +41,12 @@ constructor(props) {
           }
     }, 2000)
     localStorage.setItem(AUTH_TOKEN, data.login.access_token)
-    window.location = '/Client'
+
+    if(data.login.  user.account_type === "Client"){
+    	window.location = '/Client'
+    }else{
+    	window.location = '/Experts'
+    }
   }
 
   handleForgotPassword(){

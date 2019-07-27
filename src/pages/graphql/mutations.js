@@ -12,6 +12,11 @@ export const LOGIN = gql`
 		    password:$password
 		}){
 		    access_token
+		    user{
+		      first_name
+		      phone
+		      account_type
+		    }
 		}
 	}
 `;

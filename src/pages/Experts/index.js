@@ -1,17 +1,30 @@
 import { React, Component } from "react"
+import Modal from "react-modal"
+import { Query } from "react-apollo";
+import LoginForm from "../components/Forms/loginForm"
 import Footer from '../components/Footer'
 import RegisteredAccount from './registeredExperts'
 import loader from "../../images/loader.gif"
-
 import NewApplications from "./TableQueryData/newApplications"
 import AssignedApplication from "./TableQueryData/assignedApplication"
 import InProgressApplication from "./TableQueryData/inProgressApplication"
 import CompletedApplication from "./TableQueryData/completedApplication"
 import ExpertsComponent from "./registeredExperts"
-
+import NotFoundPage from "../401"
 import LogoutForm from "../components/Forms/logoutForm"
-
 import MainLayout from "../components/ExpertAccountComponents/mainLayout"
+import { LOGGED_IN_USER } from "../graphql/queries"
+import ExpertClients from "./getExpertClients"
+
+const customStyles = {
+  content : {
+    top                   : '0%',
+    left                  : '0%',
+    width                 : '100%',
+    height                : '100%',
+    backgroundColor       : 'rgba(255,255,255,0.3)'
+  }
+};
 
 class IndexPage extends Component {
     constructor(props) {
@@ -23,7 +36,10 @@ class IndexPage extends Component {
             CompletedApplication:false,
             ExpertsComponent:false,
             currentComponent:"New Applications",
-            currentMenu:"NewApplications"
+            currentMenu:"NewApplications",
+            loggedIn:"",
+
+
             
         }
          this.handleDisplayComponent = this.handleDisplayComponent.bind(this);
@@ -32,13 +48,12 @@ class IndexPage extends Component {
         this.setState({
             loggedIn:localStorage.getItem('auth-token') || ""
         })
-    }
 
-    componentWillMount() {
         if (this.state.loggedIn === "") {
-            window.location = '/'
+           this.setState({ showModal: true });
         }
     }
+
 
     handleDisplayComponent(event){
         let Component =  event.target.id;
@@ -61,8 +76,24 @@ class IndexPage extends Component {
 
 
     render() {
+          if (this.state.loggedIn != "") {
             return (
+                 <Query query={LOGGED_IN_USER}>
+                    {({ loading, error, data }) => {
+                    if (loading) return (
+                    <div className = "loader">
+                        <div className="loader_client_account">
+                            <img  src={loader} alt="gradsuccess" />
+                            <h1>Just a moment...</h1>
+                        </div>
+                    </div>
+                    )
+                if (error) return `Error! ${error.message}`;
+                return (
                 <div>
+                    {data.me.account_type === "Client"?
+                        <NotFoundPage />
+                        :<div>
                     <MainLayout />
                     <div className = "main-content">
                             <div className = "client_main_area">
@@ -102,6 +133,10 @@ class IndexPage extends Component {
                                         onClick = {this.handleDisplayComponent}>Experts
                                     </button>
                                     <LogoutForm />
+
+                                    <hr />
+
+                                      <ExpertClients expertID = {data.me.id}/>
                                 </div>
                                 <div>
                                     <div><h3 className = "form-header-main" >{this.state.currentComponent}</h3></div>
@@ -118,8 +153,27 @@ class IndexPage extends Component {
                         </div>
                
                     <Footer />
+               </div>
+                    }
                 </div>
+                    );
+                    }}
+                </Query>
             );
+            } else {
+            return (
+                <div>
+                        <Modal 
+                           isOpen={this.state.showModal}
+                           contentLabel="Minimal Modal Example"
+                           style={customStyles}
+                           ariaHideApp={false}
+                        >
+                          <LoginForm />
+                        </Modal>
+                </div>
+            )
+        }
     }
 }
 export default IndexPage
